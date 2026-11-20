@@ -37,6 +37,18 @@ const CREDITS = [
   "confirmed": true
  },
  {
+  "name": "X Games Aspen",
+  "confirmed": true
+ },
+ {
+  "name": "Baron Mamiya",
+  "confirmed": true
+ },
+ {
+  "name": "Fynn Bullock",
+  "confirmed": true
+ },
+ {
   "name": "Killington World Cup",
   "confirmed": true
  },
@@ -296,9 +308,21 @@ const ACCESS = {
   {
    "name": "River Radamus",
    "confirmed": true
+  },
+  {
+   "name": "Baron Mamiya",
+   "confirmed": true
+  },
+  {
+   "name": "Fynn Bullock",
+   "confirmed": true
   }
  ],
  "places": [
+  {
+   "name": "X Games, Aspen",
+   "confirmed": true
+  },
   {
    "name": "Killington, Vermont",
    "confirmed": true
@@ -348,6 +372,38 @@ const STEPS = [
 const ORIGINALS = [
  {
   "type": "img",
+  "src": "assets/img/xgames-01-1400.webp",
+  "caption": "X Games Aspen 2025",
+  "confirmed": true
+ },
+ {
+  "type": "video",
+  "file": "assets/video/followcams-06.mp4",
+  "loop": "assets/video/followcams-06-loop.mp4",
+  "poster": "assets/posters/followcams-06.jpg",
+  "caption": "Follow cam",
+  "confirmed": true
+ },
+ {
+  "type": "img",
+  "src": "assets/img/xgames-04-1400.webp",
+  "caption": "X Games Aspen 2025",
+  "confirmed": true
+ },
+ {
+  "type": "img",
+  "src": "assets/img/xgames-03-1400.webp",
+  "caption": "X Games Aspen 2025 · Superpipe",
+  "confirmed": true
+ },
+ {
+  "type": "img",
+  "src": "assets/img/xgames-08-1400.webp",
+  "caption": "X Games Aspen 2025",
+  "confirmed": true
+ },
+ {
+  "type": "img",
   "src": "assets/img/beijing-slopestyle-air-h1000.webp",
   "caption": "Beijing 2022 · Slopestyle",
   "confirmed": true
@@ -361,6 +417,7 @@ const ORIGINALS = [
  {
   "type": "video",
   "file": "assets/video/followcams-02.mp4",
+  "loop": "assets/video/followcams-02-loop.mp4",
   "poster": "assets/posters/followcams-02.jpg",
   "caption": "Follow cam",
   "confirmed": true
@@ -561,48 +618,54 @@ const BEIJING = {
 };
 const COLLAGE = [
  {
-  "src": "assets/img/beijing-slopestyle-air-1200.webp",
+  "src": "assets/img/xgames-03-1400.webp",
   "x": 1,
-  "y": 5,
-  "w": 31,
-  "gate": "beijing"
- },
- {
-  "src": "assets/posters/river-radamus-2-1200.webp",
-  "x": 66,
-  "y": 3,
-  "w": 32
- },
- {
-  "src": "assets/img/beijing-portrait-finish-1200.webp",
-  "x": 38,
-  "y": -4,
-  "w": 15,
-  "gate": "beijing"
- },
- {
-  "src": "assets/img/beijing-portrait-oakley-1200.webp",
-  "x": 79,
-  "y": 46,
-  "w": 19,
-  "gate": "beijing"
- },
- {
-  "src": "assets/posters/corvatsch-followcam-1200.webp",
-  "x": 2,
-  "y": 52,
-  "w": 17
- },
- {
-  "src": "assets/posters/sauna-build-1200.webp",
-  "x": 24,
-  "y": 70,
-  "w": 18
- },
- {
-  "src": "assets/posters/river-radamus-1200.webp",
-  "x": 50,
-  "y": 72,
+  "y": 2,
   "w": 28
+ },
+ {
+  "video": "assets/video/followcams-02-loop.mp4",
+  "poster": "assets/posters/followcams-02.jpg",
+  "x": 34,
+  "y": -9,
+  "w": 9
+ },
+ {
+  "src": "assets/img/xgames-01-1400.webp",
+  "x": 64,
+  "y": 0,
+  "w": 24
+ },
+ {
+  "src": "assets/img/xgames-02-1400.webp",
+  "x": 1,
+  "y": 36,
+  "w": 13
+ },
+ {
+  "video": "assets/video/followcams-01-loop.mp4",
+  "poster": "assets/posters/followcams-01.jpg",
+  "x": 86,
+  "y": 36,
+  "w": 12
+ },
+ {
+  "src": "assets/img/xgames-07-1400.webp",
+  "x": 15,
+  "y": 67,
+  "w": 24
+ },
+ {
+  "video": "assets/video/followcams-06-loop.mp4",
+  "poster": "assets/posters/followcams-06.jpg",
+  "x": 46,
+  "y": 64,
+  "w": 9
+ },
+ {
+  "src": "assets/img/xgames-09-1400.webp",
+  "x": 61,
+  "y": 69,
+  "w": 24
  }
 ];

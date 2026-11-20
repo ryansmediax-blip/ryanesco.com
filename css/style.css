@@ -525,3 +525,5 @@ em { font-style: italic; }
 .display { letter-spacing: -.01em; line-height: .95; }
 .hero__title { letter-spacing: -.02em; }
 .statement__text { line-height: 1.12; }
+
+.collage__item video { display: block; width: 100%; height: auto; filter: grayscale(calc(1 - var(--p, 0) * 1.6)); }

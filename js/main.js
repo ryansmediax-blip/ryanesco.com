@@ -89,7 +89,16 @@
 
     /* collage */
     $("#collageItems").innerHTML = COLLAGE.filter((c) => c.gate !== "beijing" || ok(BEIJING)).map((c, i) =>
-      `<figure class="collage__item" style="--x:${c.x}%;--y:${c.y}%;--w:${c.w}vw;--d:${(i % 3) - 1}"><img src="${esc(P(c.src))}" alt="" loading="lazy"></figure>`).join("");
+      `<figure class="collage__item${c.video ? " collage__item--v" : ""}" style="--x:${c.x}%;--y:${c.y}%;--w:${c.w}vw;--d:${(i % 3) - 1}">${c.video
+        ? `<video muted loop playsinline preload="none" poster="${esc(P(c.poster))}" data-src="${esc(P(c.video))}"></video>`
+        : `<img src="${esc(P(c.src))}" alt="" loading="lazy">`}</figure>`).join("");
+    /* follow-cam loops in the collage play only while it's on screen */
+    const cvids = $$("#collageItems video");
+    if (cvids.length && !REDUCED && !SAVE_DATA) {
+      new IntersectionObserver(([e]) => cvids.forEach((v) => {
+        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+      }), { rootMargin: "200px 0px" }).observe($("#collage"));
+    }
 
     /* work list */
     $("#caseRows").innerHTML = CASES.filter(ok).map((c, i) => {
