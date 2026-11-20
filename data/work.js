@@ -242,6 +242,25 @@ const CASES = [
   "confirmed": true
  },
  {
+  "slug": "jeanty",
+  "page": false,
+  "client": null,
+  "title": "Jeanty",
+  "tag": "Football · Boise State",
+  "color": "ice",
+  "offer": "partnership",
+  "line": "Boise State's No. 2 under the lights, on the blue. Filmed and edited by me.",
+  "chips": [
+   "16:9",
+   "21 s"
+  ],
+  "file": "assets/video/jeanty.mp4",
+  "loop": "assets/video/jeanty-loop.mp4",
+  "poster": "assets/posters/jeanty.jpg",
+  "shape": "wide",
+  "confirmed": true
+ },
+ {
   "slug": "shiffrin-killington",
   "page": true,
   "client": null,
@@ -466,14 +485,6 @@ const FAQ = [
  }
 ];
 const MORE_WORK = [
- {
-  "shape": "wide",
-  "title": "Game day",
-  "tag": "Football · Stadium film",
-  "file": "assets/video/gameday.mp4",
-  "loop": "assets/video/gameday-loop.mp4",
-  "poster": "assets/posters/gameday.jpg"
- },
  {
   "shape": "portrait",
   "title": "Park laps",
