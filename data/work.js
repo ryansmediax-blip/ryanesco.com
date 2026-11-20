@@ -246,7 +246,7 @@ const CASES = [
   "file": "assets/video/koa-pipe-masters.mp4",
   "loop": "assets/video/koa-pipe-masters-loop.mp4",
   "featureLoop": "assets/video/koa-pipe-masters-1280.mp4",
-  "poster": "assets/posters/koa-pipe-masters.jpg",
+  "poster": "assets/posters/hero-action.jpg",
   "shape": "wide",
   "confirmed": true
  },
@@ -667,54 +667,204 @@ const BEIJING = {
 };
 const COLLAGE = [
  {
-  "src": "assets/img/xgames-03-1400.webp",
-  "x": -2,
-  "y": 0,
-  "w": 40
+  "still": "assets/img/xgames-03-1400.webp",
+  "ar": 1.826,
+  "w": 34,
+  "x": -30,
+  "y": -22,
+  "r": -7,
+  "wm": 62,
+  "xm": -14,
+  "ym": -30
  },
  {
-  "video": "assets/video/followcams-02-loop.mp4",
-  "poster": "assets/posters/followcams-02.jpg",
-  "x": 41,
-  "y": -16,
-  "w": 15
+  "still": "assets/img/xgames-01-1400.webp",
+  "clip": "assets/video/followcams-02-loop.mp4",
+  "film": "assets/video/followcams-02.mp4",
+  "title": "Follow cam",
+  "ar": 0.5625,
+  "w": 15,
+  "x": 6,
+  "y": -30,
+  "r": 6,
+  "wm": 30,
+  "xm": 30,
+  "ym": -24
  },
  {
-  "src": "assets/img/xgames-01-1400.webp",
-  "x": 63,
-  "y": -4,
-  "w": 36
+  "still": "assets/img/xgames-02-1400.webp",
+  "ar": 0.786,
+  "w": 18,
+  "x": 32,
+  "y": -26,
+  "r": -3,
+  "wm": 36,
+  "xm": -28,
+  "ym": 26
  },
  {
-  "src": "assets/img/xgames-02-1400.webp",
-  "x": -3,
-  "y": 42,
-  "w": 21
+  "still": "assets/img/xgames-07-1400.webp",
+  "clip": "assets/video/river-radamus-loop.mp4",
+  "film": "assets/video/river-radamus.mp4",
+  "title": "River Radamus",
+  "ar": 1.778,
+  "w": 30,
+  "x": -34,
+  "y": 24,
+  "r": 9,
+  "wm": 60,
+  "xm": 16,
+  "ym": 34
  },
  {
-  "video": "assets/video/followcams-01-loop.mp4",
-  "poster": "assets/posters/followcams-01.jpg",
-  "x": 82,
-  "y": 46,
-  "w": 20
+  "still": "assets/img/xgames-05-1400.webp",
+  "clip": "assets/video/followcams-01-loop.mp4",
+  "film": "assets/video/followcams-01.mp4",
+  "title": "Follow cam",
+  "ar": 1,
+  "w": 20,
+  "x": 36,
+  "y": 20,
+  "r": -5,
+  "wm": 38,
+  "xm": -26,
+  "ym": 2
  },
  {
-  "src": "assets/img/xgames-07-1400.webp",
-  "x": 17,
-  "y": 68,
-  "w": 34
+  "still": "assets/img/xgames-04-1400.webp",
+  "clip": "assets/video/followcams-06-loop.mp4",
+  "film": "assets/video/followcams-06.mp4",
+  "title": "Follow cam",
+  "ar": 0.5625,
+  "w": 13,
+  "x": -8,
+  "y": 36,
+  "r": 4,
+  "wm": 28,
+  "xm": 32,
+  "ym": 6
  },
  {
-  "video": "assets/video/followcams-06-loop.mp4",
-  "poster": "assets/posters/followcams-06.jpg",
-  "x": 54,
-  "y": 62,
-  "w": 14
+  "still": "assets/img/xgames-09-1400.webp",
+  "ar": 1.5,
+  "w": 24,
+  "x": 14,
+  "y": 38,
+  "r": -8,
+  "m": false
  },
  {
-  "src": "assets/img/xgames-09-1400.webp",
-  "x": 70,
-  "y": 80,
-  "w": 30
+  "still": "assets/img/xgames-06-1400.webp",
+  "clip": "assets/video/followcams-07-loop.mp4",
+  "film": "assets/video/followcams-07.mp4",
+  "title": "Follow cam",
+  "ar": 0.8,
+  "w": 15,
+  "x": 44,
+  "y": -2,
+  "r": 7,
+  "m": false
+ },
+ {
+  "still": "assets/img/xgames-08-1400.webp",
+  "ar": 0.667,
+  "w": 16,
+  "x": -46,
+  "y": -2,
+  "r": -4,
+  "m": false
  }
 ];
+const PLAYGROUND = {
+ "pipeTitle": "Koa Smith at Pipe Masters",
+ "pipe": [
+  {
+   "n": "01",
+   "lab": "Drop",
+   "loop": "assets/video/koa-a-loop.mp4",
+   "poster": "assets/posters/koa-a.jpg",
+   "film": "assets/video/koa-pipe-masters.mp4"
+  },
+  {
+   "n": "02",
+   "lab": "Inside",
+   "loop": "assets/video/koa-b-loop.mp4",
+   "poster": "assets/posters/koa-b.jpg",
+   "film": "assets/video/koa-pipe-masters.mp4"
+  },
+  {
+   "n": "03",
+   "lab": "Spit",
+   "loop": "assets/video/koa-c-loop.mp4",
+   "poster": "assets/posters/koa-c.jpg",
+   "film": "assets/video/koa-pipe-masters.mp4"
+  },
+  {
+   "n": "04",
+   "lab": "Claim",
+   "loop": "assets/video/koa-d-loop.mp4",
+   "poster": "assets/posters/koa-d.jpg",
+   "film": "assets/video/koa-pipe-masters.mp4"
+  }
+ ],
+ "pipeStart": 2,
+ "cams": [
+  {
+   "lab": "Follow cam",
+   "arn": 0.5625,
+   "loop": "assets/video/followcams-02-loop.mp4",
+   "poster": "assets/posters/followcams-02.jpg",
+   "film": "assets/video/followcams-02.mp4"
+  },
+  {
+   "lab": "Follow cam",
+   "arn": 0.8,
+   "loop": "assets/video/followcams-04-loop.mp4",
+   "poster": "assets/posters/followcams-04.jpg",
+   "film": "assets/video/followcams-04.mp4"
+  },
+  {
+   "lab": "Silvaplana World Cup · Corvatsch",
+   "arn": 0.5625,
+   "loop": "assets/video/corvatsch-followcam-loop.mp4",
+   "poster": "assets/posters/corvatsch-followcam.jpg",
+   "film": "assets/video/corvatsch-followcam.mp4"
+  },
+  {
+   "lab": "Follow cam",
+   "arn": 1,
+   "loop": "assets/video/followcams-01-loop.mp4",
+   "poster": "assets/posters/followcams-01.jpg",
+   "film": "assets/video/followcams-01.mp4"
+  },
+  {
+   "lab": "Follow cam",
+   "arn": 0.5625,
+   "loop": "assets/video/followcams-05-loop.mp4",
+   "poster": "assets/posters/followcams-05.jpg",
+   "film": "assets/video/followcams-05.mp4"
+  },
+  {
+   "lab": "Park laps · Freeski",
+   "arn": 0.8,
+   "loop": "assets/video/filmed-07-loop.mp4",
+   "poster": "assets/posters/filmed-07.jpg",
+   "film": "assets/video/filmed-07.mp4"
+  },
+  {
+   "lab": "Follow cam",
+   "arn": 0.5625,
+   "loop": "assets/video/followcams-06-loop.mp4",
+   "poster": "assets/posters/followcams-06.jpg",
+   "film": "assets/video/followcams-06.mp4"
+  },
+  {
+   "lab": "Follow cam",
+   "arn": 0.8,
+   "loop": "assets/video/followcams-07-loop.mp4",
+   "poster": "assets/posters/followcams-07.jpg",
+   "film": "assets/video/followcams-07.mp4"
+  }
+ ],
+ "camsStart": 3
+};

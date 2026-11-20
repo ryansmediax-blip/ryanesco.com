@@ -11,7 +11,7 @@
   <meta property="og:description" content="I film athletes in the places people want to be.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ryanesco.com/">
-  <meta property="og:image" content="https://ryanesco.com/assets/posters/hero-action.jpg">
+  <meta property="og:image" content="https://ryanesco.com/assets/posters/koa-pipe-masters.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0a'/%3E%3Ctext x='50' y='67' font-family='Garamond,Georgia,serif' font-style='italic' font-size='50' fill='%23efebe4' text-anchor='middle'%3ERE%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,31 +84,42 @@
     <p class="statement__price mono" id="heroPrice"></p>
   </section>
 
+  <!-- ============ PIPE MASTERS (full-bleed background film) ============ -->
+  <section class="bgfilm" id="pipe" aria-label="Koa Smith at the Vans Pipe Masters">
+    <video class="bgfilm__video" id="pipeVideo" muted loop playsinline preload="none" poster="assets/posters/koa-pipe-masters.jpg"
+      data-src="assets/video/koa-pipe-masters-1280.mp4" data-src-m="assets/video/koa-pipe-masters-720.mp4"></video>
+    <div class="bgfilm__veil"></div>
+    <button class="bgfilm__play" id="pipePlay" data-play data-film="assets/video/koa-pipe-masters.mp4" data-title="Koa Smith at Pipe Masters" aria-label="Play Koa Smith at Pipe Masters">
+      <span class="mono">Koa Smith · Vans Pipe Masters · Banzai Pipeline</span><i aria-hidden="true"></i>
+    </button>
+  </section>
+
   <!-- ============ CREDITS ============ -->
   <section class="credits" aria-label="On the hill with, on the job for">
     <p class="eyebrow eyebrow--center">On the hill with &amp; on the job for</p>
     <div class="marquee" id="marquee"><div class="marquee__track" id="marqueeTrack"></div></div>
   </section>
 
-  <!-- ============ FEATURED FILM ============ -->
-  <section class="feature" id="feature">
-    <div class="feature__head">
-      <p class="eyebrow">Latest film</p>
-      <h2 class="display reveal-lines" id="featureTitle"></h2>
-      <p class="feature__line" id="featureLine"></p>
+  <!-- ============ REEL ============ -->
+  <section class="pg" id="playground" aria-labelledby="pgTitle">
+    <div class="head">
+      <p class="eyebrow">Playground</p>
+      <h2 class="display" id="pgTitle">Pick a line. <em>Watch it run.</em></h2>
     </div>
-    <button class="feature__frame" id="featureFrame" data-play>
-      <img id="featurePoster" alt="" loading="lazy">
-      <video id="featureLoop" muted loop playsinline preload="none"></video>
-      <span class="feature__play"><i aria-hidden="true"></i><b>Play film</b></span>
-    </button>
+    <div class="pg__row pg__row--pipe" id="pgPipe" role="group" aria-label="Koa Smith at Pipe Masters"></div>
+    <div class="pg__meta mono"><span>Koa Smith · Vans Pipe Masters · Pipeline</span><span class="pg__count" id="pgCount"><b>03</b> / 04</span></div>
+    <h3 class="pg__sub">Follow cams. <em>One turn behind.</em></h3>
+    <div class="pg__row pg__row--cams" id="pgCams" role="group" aria-label="Follow cams"></div>
+    <p class="pg__hint mono" id="pgHint"></p>
   </section>
 
   <!-- ============ COLLAGE ============ -->
   <section class="collage" id="collage" aria-label="Stills">
     <div class="collage__stage">
       <div class="collage__items" id="collageItems"></div>
-      <h2 class="collage__title display"><span>Where the riding</span><span><em>is real.</em></span></h2>
+      <h2 class="collage__title display" aria-label="Where the riding is real."><span>Where the riding</span><span><em>is real.</em></span></h2>
+      <p class="collage__hint mono" id="collageHint"></p>
+      <p class="collage__chip mono">X Games Aspen · 2025</p>
     </div>
   </section>
 
@@ -326,6 +337,13 @@
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>
+
+  <!-- ============ PHOTO VIEW ============ -->
+  <div class="photobox" id="photoBox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo">
+    <button class="player__close" id="photoClose" aria-label="Close photo">Close ✕</button>
+    <img id="photoImg" alt="">
+    <p class="player__caption" id="photoCap"></p>
+  </div>
 
   <!-- ============ PLAYER ============ -->
   <div class="player" id="player" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Video player">

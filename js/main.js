@@ -22,6 +22,29 @@
   const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const SAVE_DATA = !!(navigator.connection && navigator.connection.saveData);
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+  /* Plays: every Playground / burst loop goes through here, so at most MAXV play at once */
+  const MAXV = matchMedia("(max-width: 760px)").matches ? 3 : 6;
+  const live = [];
+  const Plays = {
+    want(v) {
+      if (!v || REDUCED || SAVE_DATA) return;
+      if (!v.src) v.src = v.dataset.src;
+      const i = live.indexOf(v); if (i >= 0) live.splice(i, 1);
+      live.push(v);
+      while (live.length > MAXV) Plays.drop(live[0]);
+      v.play().then(() => { const h = v.closest("[data-host]"); if (h) h.classList.add("is-playing"); }).catch(() => {});
+    },
+    drop(v) {
+      if (!v) return;
+      const i = live.indexOf(v); if (i >= 0) live.splice(i, 1);
+      v.pause(); const h = v.closest("[data-host]"); if (h) h.classList.remove("is-playing");
+    },
+    pauseAll() { live.forEach((v) => v.pause()); },
+    resumeAll() { live.forEach((v) => v.play().catch(() => {})); },
+  };
+  document.addEventListener("visibilitychange", () => (document.hidden ? Plays.pauseAll() : Plays.resumeAll()));
 
   /* draft gating: unconfirmed items show (outlined) in draft, vanish otherwise */
   const ok = (it) => it && (it.confirmed !== false || DRAFT);
@@ -77,7 +100,7 @@
 
     /* featured film = first confirmed case */
     const feat = CASES.filter(ok)[0];
-    if (feat) {
+    if (feat && $("#feature")) {
       $("#featureTitle").innerHTML = `${esc(feat.client ? feat.client + ": " : "")}<em>${esc(feat.title)}</em>`;
       $("#featureLine").textContent = `${feat.line}  ·  ${feat.chips.join(" · ")}`;
       $("#featurePoster").src = P(posterOf(feat));
@@ -94,20 +117,32 @@
         }, { threshold: 0.35 }).observe(ff);
         ff.dataset.autoplay = "1";
       }
-    } else $("#feature").remove();
+    } else if ($("#feature")) $("#feature").remove();
 
-    /* collage */
-    $("#collageItems").innerHTML = COLLAGE.filter((c) => c.gate !== "beijing" || ok(BEIJING)).map((c, i) =>
-      `<figure class="collage__item${c.video ? " collage__item--v" : ""}" style="--x:${c.x}%;--y:${c.y}%;--w:${c.w}vw;--d:${(i % 3) - 1}">${c.video
-        ? `<video muted loop playsinline preload="none" poster="${esc(P(c.poster))}" data-src="${esc(P(c.video))}"></video>`
-        : `<img src="${esc(P(c.src))}" alt="" loading="lazy">`}</figure>`).join("");
-    /* follow-cam loops in the collage play only while it's on screen */
-    const cvids = $$("#collageItems video");
-    if (cvids.length && !REDUCED && !SAVE_DATA) {
-      new IntersectionObserver(([e]) => cvids.forEach((v) => {
-        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
-      }), { rootMargin: "200px 0px" }).observe($("#collage"));
-    }
+    /* burst tiles: a still in front, a clip behind it on some */
+    $("#collageItems").innerHTML = COLLAGE.map((c, i) => `
+      <figure class="ctile${c.clip ? " ctile--clip" : ""}"${c.m === false ? ' data-m="none"' : ""} style="--w:${c.w};--x:${c.x};--y:${c.y};--r:${c.r};--ar:${c.ar};--wm:${c.wm ?? c.w};--xm:${c.xm ?? c.x};--ym:${c.ym ?? c.y}">
+        <div class="ctile__card" data-host role="button" tabindex="0" ${c.clip
+          ? `data-play data-film="${esc(P(c.film))}" data-title="${esc(c.title)}" aria-label="Play ${esc(c.title)}"`
+          : `data-cursor="View" data-photo="${esc(P(c.still))}" aria-label="View photo, X Games Aspen 2025"`}>
+          ${c.clip ? `<video muted loop playsinline preload="none" data-src="${esc(P(c.clip))}"></video>` : ""}
+          <img class="ctile__front" src="${esc(P(c.still))}" alt="" loading="lazy" decoding="async">
+        </div>
+      </figure>`).join("");
+    $("#collageHint").textContent = FINE ? "Click a frame" : "Tap a frame";
+
+    /* Playground rows */
+    const pgPanel = (it, title) => `
+      <button class="pg__p" type="button" data-host data-play data-film="${esc(P(it.film))}" data-title="${esc(title)}" aria-label="Play ${esc(title)}" tabindex="-1" style="--arn:${it.arn || 1.7778}">
+        <img src="${esc(P(it.poster))}" alt="" loading="lazy" decoding="async">
+        <video muted loop playsinline preload="none" data-src="${esc(P(it.loop))}"></video>
+        ${it.n ? `<span class="pg__n" aria-hidden="true">${it.n}</span>` : ""}
+        <span class="pg__lab mono">${esc(it.lab)}</span>
+        <span class="chip-play mono" aria-hidden="true"><i></i>Play film</span>
+      </button>`;
+    $("#pgPipe").innerHTML = PLAYGROUND.pipe.map((it) => pgPanel(it, PLAYGROUND.pipeTitle)).join("");
+    $("#pgCams").innerHTML = PLAYGROUND.cams.map((it) => pgPanel(it, it.lab)).join("");
+    $("#pgHint").textContent = FINE ? "Hover to open · Click to watch" : "Tap to open · Tap again to watch · Swipe the follow cams";
 
     /* work list */
     $("#caseRows").innerHTML = CASES.filter(ok).map((c, i) => {
@@ -418,6 +453,7 @@
   const openPlayer = (file, title) => {
     if (!file) return;
     lastFocus = document.activeElement;
+    Plays.pauseAll();
     pv.src = file; $("#playerCaption").textContent = title || "";
     player.classList.add("player--open"); player.setAttribute("aria-hidden", "false");
     body.style.overflow = "hidden";
@@ -429,6 +465,7 @@
     player.classList.remove("player--open"); player.setAttribute("aria-hidden", "true");
     body.style.overflow = "";
     pv.pause(); pv.removeAttribute("src"); pv.load();
+    Plays.resumeAll();
     if (lastFocus) lastFocus.focus();
   };
   if (player) {
@@ -449,6 +486,107 @@
       }
     });
   }
+
+  /* ==========================================================
+     PLAYGROUND: two accordion rows; the open panel plays
+     ========================================================== */
+  const isPhone = matchMedia("(max-width: 760px)").matches;
+  function accordion(row, start, opts) {
+    const ps = $$(".pg__p", row);
+    let cur = -1, visible = false, over = false, lastTouch = 0, ptype = "mouse";
+    const set = (i) => {
+      if (i === cur) return;
+      const prev = ps[cur];
+      ps.forEach((p, k) => { p.classList.toggle("is-on", k === i); p.tabIndex = k === i ? 0 : -1; });
+      if (prev) { const v = prev.querySelector("video"); setTimeout(() => { if (!prev.classList.contains("is-on")) Plays.drop(v); }, 700); }
+      cur = i;
+      if (visible) Plays.want(ps[i].querySelector("video"));
+      if (opts.onChange) opts.onChange(i);
+    };
+    ps.forEach((p, i) => {
+      p.addEventListener("pointerdown", (e) => { ptype = e.pointerType; lastTouch = Date.now(); });
+      if (FINE) {
+        let t;
+        p.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") t = setTimeout(() => set(i), 60); });
+        p.addEventListener("pointerleave", () => clearTimeout(t));
+      }
+      p.addEventListener("click", () => {
+        lastTouch = Date.now();
+        if (i === cur || ptype === "mouse") { set(i); openPlayer(p.dataset.film, p.dataset.title); }
+        else { set(i); if (opts.track) p.scrollIntoView({ inline: "center", block: "nearest", behavior: REDUCED ? "auto" : "smooth" }); }
+      });
+      p.addEventListener("focus", () => { if (p.matches(":focus-visible")) set(i); });
+    });
+    row.addEventListener("keydown", (e) => {
+      const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault(); ps[(cur + d + ps.length) % ps.length].focus();
+    });
+    row.addEventListener("pointerenter", () => (over = true));
+    row.addEventListener("pointerleave", () => (over = false));
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      const v = ps[cur] && ps[cur].querySelector("video");
+      visible ? Plays.want(v) : Plays.drop(v);
+    }, { rootMargin: "150px 0px" }).observe(row);
+    if (opts.track && isPhone) {
+      const cio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) set(ps.indexOf(e.target)); }), { root: row, rootMargin: "0px -45% 0px -45%" });
+      ps.forEach((p) => cio.observe(p));
+      row.addEventListener("scroll", () => row.closest(".pg").classList.add("pg--dragged"), { once: true, passive: true });
+    }
+    if (opts.attract && !REDUCED) setInterval(() => {
+      if (visible && !over && !row.contains(document.activeElement) && Date.now() - lastTouch > 8000 && !document.hidden && !player.classList.contains("player--open")) set((cur + 1) % ps.length);
+    }, 3600);
+    set(start);
+    if (opts.track && isPhone) requestAnimationFrame(() => { row.scrollLeft = ps[start].offsetLeft - (row.clientWidth - ps[start].offsetWidth) / 2; });
+    return { set };
+  }
+  if ($("#pgPipe")) {
+    accordion($("#pgPipe"), PLAYGROUND.pipeStart, {
+      attract: true,
+      onChange: (i) => { const b = $("#pgCount b"); b.textContent = String(i + 1).padStart(2, "0"); b.classList.remove("roll"); void b.offsetWidth; b.classList.add("roll"); },
+    });
+    accordion($("#pgCams"), PLAYGROUND.camsStart, { track: true, attract: !isPhone });
+  }
+
+  /* burst tiles: a clip tile reveals its clip then opens the film; a still opens big */
+  const photoBox = $("#photoBox");
+  const openPhoto = (src) => {
+    lastFocus = document.activeElement;
+    $("#photoImg").src = src; $("#photoCap").textContent = "X Games Aspen 2025";
+    photoBox.classList.add("player--open"); photoBox.setAttribute("aria-hidden", "false");
+    body.style.overflow = "hidden"; $("#photoClose").focus();
+  };
+  const closePhoto = () => {
+    if (!photoBox || !photoBox.classList.contains("player--open")) return;
+    photoBox.classList.remove("player--open"); photoBox.setAttribute("aria-hidden", "true");
+    body.style.overflow = ""; if (lastFocus) lastFocus.focus();
+  };
+  if (photoBox) {
+    $("#photoClose").addEventListener("click", closePhoto);
+    photoBox.addEventListener("click", (e) => { if (e.target === photoBox) closePhoto(); });
+    addEventListener("keydown", (e) => { if (e.key === "Escape") closePhoto(); });
+  }
+  /* Pipe Masters band: a background film that plays while on screen; click to watch */
+  const pipeV = $("#pipeVideo");
+  if (pipeV) {
+    pipeV.dataset.src = P(isPhone ? pipeV.dataset.srcM : pipeV.dataset.src);
+    new IntersectionObserver(([e]) => (e.isIntersecting ? Plays.want(pipeV) : Plays.drop(pipeV)), { rootMargin: "100px 0px" }).observe(pipeV);
+    const pp = $("#pipePlay");
+    pp.addEventListener("click", () => openPlayer(P(pp.dataset.film), pp.dataset.title));
+  }
+
+  $$(".ctile__card").forEach((card) => {
+    const go = () => {
+      if (card.dataset.photo) return openPhoto(card.dataset.photo);
+      const t = card.closest(".ctile");
+      if (t.classList.contains("is-live")) return openPlayer(card.dataset.film, card.dataset.title);
+      t._forced = true; t._on = true; t.classList.add("is-live"); Plays.want(card.querySelector("video"));
+      setTimeout(() => openPlayer(card.dataset.film, card.dataset.title), 450);
+    };
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  });
 
   /* mobile menu */
   const menuBtn = $("#navMenu");
@@ -473,7 +611,7 @@
   const rvIO = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add("in"); rvIO.unobserve(e.target); }
   }), { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-  const rvSel = ".display:not(.collage__title), .eyebrow, .rv, .row, .svc, .node, .names li, .stepc, .card, .tile, .qa, .about__text p, .feature__frame, .start__intro p, .form";
+  const rvSel = ".display:not(.collage__title), .pg__row, .pg__sub, .eyebrow, .rv, .row, .svc, .node, .names li, .stepc, .card, .tile, .qa, .about__text p, .feature__frame, .start__intro p, .form";
   $$(rvSel).forEach((el) => el.classList.add("rv"));
   if (REDUCED) $$(".rv").forEach((el) => el.classList.add("in"));
   else $$(".rv").forEach((el) => rvIO.observe(el));
@@ -495,7 +633,9 @@
     });
     document.addEventListener("mouseleave", () => cur.classList.remove("on"));
     document.addEventListener("mouseover", (e) => {
-      const play = !e.target.closest("a") && !!e.target.closest("[data-play], #playReel, .row");
+      const tgt = e.target.closest("[data-cursor]");
+      const play = !e.target.closest("a") && !!e.target.closest("[data-play], #playReel, .row, [data-cursor]");
+      cur.firstElementChild.textContent = tgt ? tgt.dataset.cursor : "Play";
       cur.classList.toggle("cursor--play", play);
       cur.classList.toggle("cursor--link", !play && !!e.target.closest("a, button, .pill"));
     });
@@ -503,7 +643,7 @@
 
   /* scroll-linked scenes */
   const nav = $("#nav"), heroEl = $(".hero"), words = $$(".sw"), stEl = $("#statement");
-  const collage = $("#collage"), citems = $$(".collage__item"), ctitle = $(".collage__title");
+  const collage = $("#collage"), ctitle = $(".collage__title"), tiles = $$(".ctile"), clipTiles = $$(".ctile--clip");
   const lines = $$("#linesList li"), proc = $("#track"), fill = $("#trackFill");
   const progIn = (el, start = 0.85, len = 0.9) => { if (!el) return 0; const r = el.getBoundingClientRect(); return clamp((innerHeight * start - r.top) / (r.height * len)); };
 
@@ -531,9 +671,25 @@
     if (collage) {
       const r = collage.getBoundingClientRect();
       const p = clamp(-r.top / Math.max(1, r.height - innerHeight));
-      collage.style.setProperty("--p", p.toFixed(3));
-      if (ctitle) ctitle.classList.toggle("in", p > 0.15);
+      const onScreen = r.bottom > 0 && r.top < innerHeight;
+      if (onScreen) {
+        const ex = clamp((p - 0.82) / 0.18);                 // exit: tiles keep flying out and fade
+        collage.style.setProperty("--k", (1 + ex * 0.5).toFixed(3));
+        tiles.forEach((t, i) => {
+          const b = easeOut(clamp((p - 0.03 - i * 0.025) / 0.32));
+          t.style.setProperty("--b", b.toFixed(3));
+          t.style.setProperty("--o", ((1 - ex) * Math.min(1, b * 2)).toFixed(3));
+        });
+        collage.classList.toggle("burst-done", p > 0.4 && p < 0.9);
+        if (ctitle) { ctitle.classList.toggle("in", p > 0.05); ctitle.classList.toggle("is-out", ex > 0.5); }
+      }
+      clipTiles.forEach((t, k) => {
+        const on = onScreen && ((p > 0.42 + k * 0.06 && p < 0.97) || t._forced);
+        if (on !== !!t._on) { t._on = on; t.classList.toggle("is-live", on); const v = t.querySelector("video"); on ? Plays.want(v) : Plays.drop(v); }
+        if (!onScreen) t._forced = false;
+      });
     }
+    if (pipeV) { const r = pipeV.parentElement.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) pipeV.parentElement.style.setProperty("--bp", clamp((innerHeight - r.top) / (innerHeight + r.height)).toFixed(3)); }
     if (lines.length) {
       const mid = innerHeight / 2;
       lines.forEach((li) => { const r = li.getBoundingClientRect(); li.classList.toggle("lit", Math.abs(r.top + r.height / 2 - mid) < innerHeight * 0.18); });
@@ -544,7 +700,7 @@
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   addEventListener("resize", frame);
   frame();
-  if (REDUCED) { words.forEach((w) => w.classList.add("lit")); lines.forEach((l) => l.classList.add("lit")); if (fill) fill.style.setProperty("--p", 1); if (ctitle) ctitle.classList.add("in"); $$(".stepc").forEach((s) => s.classList.add("on")); }
+  if (REDUCED) { words.forEach((w) => w.classList.add("lit")); lines.forEach((l) => l.classList.add("lit")); if (fill) fill.style.setProperty("--p", 1); if (ctitle) ctitle.classList.add("in"); tiles.forEach((t) => { t.style.setProperty("--b", 1); t.style.setProperty("--o", 1); }); $$(".stepc").forEach((s) => s.classList.add("on")); }
 
   /* marquee: drifts on its own, speeds up while you scroll, only while on screen */
   if (track && !REDUCED) {
