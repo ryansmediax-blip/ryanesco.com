@@ -16,7 +16,7 @@
   --line-light: rgba(11, 11, 10, .14);
   --sand: #c8b28e;
   --red: #e0002a;
-  --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
   --pad: clamp(18px, 4.5vw, 72px);
   --max: 1440px;
@@ -517,3 +517,11 @@ em { font-style: italic; }
   .hero__veil { background: linear-gradient(180deg, rgba(11,11,10,.55) 0%, rgba(11,11,10,.35) 22%, rgba(11,11,10,.62) 45%, rgba(11,11,10,.9) 100%); }
   .hero__eyebrow, .hero__sub, .hero__title { text-shadow: 0 1px 18px rgba(11, 11, 10, .55); }
 }
+
+/* ---------- Cormorant Garamond tuning (Ryan, 2026-11-20) ---------- */
+.display, .hero__title, .collage__title, .footer__big, .lines__list li, .statement__text, .nav__drawer a { font-weight: 300; }
+.row__title, .svc__name, .node__name, .names li, .qa__q, .stepc h3, .card__title, .marquee__set > span, .marquee__set > a,
+.cs__glance dd, .player__caption, .step legend, .svc__price, .tile--end, .nav__mark { font-weight: 400; }
+.display { letter-spacing: -.01em; line-height: .95; }
+.hero__title { letter-spacing: -.02em; }
+.statement__text { line-height: 1.12; }

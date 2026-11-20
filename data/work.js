@@ -41,11 +41,6 @@ const CREDITS = [
   "confirmed": true
  },
  {
-  "name": "Tonal",
-  "confirmed": true,
-  "link": "tonal"
- },
- {
   "name": "Corvatsch, Switzerland",
   "confirmed": true
  }
@@ -73,16 +68,9 @@ const OFFERS = [
    "Hero film",
    "Social cuts"
   ],
-  "proof": [
-   {
-    "label": "Tonal",
-    "link": "tonal",
-    "case": "tonal"
-   }
-  ],
-  "loop": "assets/video/tonal-reel-loop.mp4",
-  "poster": "assets/posters/tonal-reel.jpg",
-  "gate": "tonal",
+  "proof": [],
+  "loop": "assets/video/filmed-07-loop.mp4",
+  "poster": "assets/posters/filmed-07.jpg",
   "loopFallback": "assets/video/filmed-07-loop.mp4",
   "posterFallback": "assets/posters/filmed-07.jpg",
   "price": {
@@ -206,9 +194,7 @@ const LOOP = [
   "name": "Brands",
   "color": "orange",
   "line": "You fund the shoot. You get the film.",
-  "loop": "assets/video/tonal-reel-loop.mp4",
-  "gate": "tonal",
-  "loopFallback": "assets/video/filmed-07-loop.mp4"
+  "loop": "assets/video/filmed-07-loop.mp4"
  }
 ];
 const LOOP_COPY = [
@@ -242,32 +228,6 @@ const CASES = [
   "poster": "assets/posters/river-radamus.jpg",
   "shape": "wide",
   "confirmed": true
- },
- {
-  "slug": "tonal",
-  "page": true,
-  "client": "Tonal",
-  "title": "How I prep for ski season",
-  "tag": "Brand · Fitness × Snow",
-  "color": "orange",
-  "offer": "brand-film",
-  "line": "Gym to mountain in one piece. The product earns its place before the first turn.",
-  "chips": [
-   "9:16",
-   "42 s"
-  ],
-  "file": "assets/video/tonal-reel.mp4",
-  "loop": "assets/video/tonal-reel-loop.mp4",
-  "poster": "assets/posters/tonal-reel.jpg",
-  "shape": "tall",
-  "confirmed": true,
-  "glance": {
-   "Client": "Tonal",
-   "Deliverables": "42 s vertical film, 9:16"
-  },
-  "brief": null,
-  "approach": null,
-  "result": null
  },
  {
   "slug": "shiffrin-killington",
@@ -601,48 +561,48 @@ const BEIJING = {
 };
 const COLLAGE = [
  {
-  "src": "assets/img/beijing-slopestyle-air-720.webp",
-  "x": 6,
-  "y": 10,
-  "w": 22,
+  "src": "assets/img/beijing-slopestyle-air-1200.webp",
+  "x": 1,
+  "y": 5,
+  "w": 31,
   "gate": "beijing"
  },
  {
-  "src": "assets/posters/river-radamus-2-720.webp",
-  "x": 70,
-  "y": 6,
-  "w": 20
+  "src": "assets/posters/river-radamus-2-1200.webp",
+  "x": 66,
+  "y": 3,
+  "w": 32
  },
  {
-  "src": "assets/img/beijing-portrait-oakley-720.webp",
-  "x": 80,
+  "src": "assets/img/beijing-portrait-finish-1200.webp",
+  "x": 38,
+  "y": -4,
+  "w": 15,
+  "gate": "beijing"
+ },
+ {
+  "src": "assets/img/beijing-portrait-oakley-1200.webp",
+  "x": 79,
+  "y": 46,
+  "w": 19,
+  "gate": "beijing"
+ },
+ {
+  "src": "assets/posters/corvatsch-followcam-1200.webp",
+  "x": 2,
   "y": 52,
-  "w": 12,
-  "gate": "beijing"
+  "w": 17
  },
  {
-  "src": "assets/posters/corvatsch-followcam-720.webp",
-  "x": 4,
-  "y": 60,
-  "w": 11
+  "src": "assets/posters/sauna-build-1200.webp",
+  "x": 24,
+  "y": 70,
+  "w": 18
  },
  {
-  "src": "assets/posters/sauna-build-720.webp",
-  "x": 30,
-  "y": 74,
-  "w": 10
- },
- {
-  "src": "assets/posters/river-radamus-720.webp",
-  "x": 58,
-  "y": 78,
-  "w": 16
- },
- {
-  "src": "assets/img/beijing-portrait-finish-720.webp",
-  "x": 40,
-  "y": 2,
-  "w": 10,
-  "gate": "beijing"
+  "src": "assets/posters/river-radamus-1200.webp",
+  "x": 50,
+  "y": 72,
+  "w": 28
  }
 ];
