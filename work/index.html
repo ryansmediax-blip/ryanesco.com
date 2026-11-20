@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0a">
+  <title>Work | Ryan Escandon</title>
+  <meta name="description" content="Everything I shoot: brand films, follow cams, World Cup work, and edits.">
+  <link rel="canonical" href="https://ryanesco.com/work/">
+  <meta property="og:title" content="Work | Ryan Escandon">
+  <meta property="og:description" content="Everything I shoot: brand films, follow cams, World Cup work, and edits.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ryanesco.com/assets/posters/hero-action.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0a'/%3E%3Ctext x='50' y='67' font-family='Georgia,serif' font-style='italic' font-size='50' fill='%23efebe4' text-anchor='middle'%3ERE%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="work" data-base="../">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cursor" id="cursor" aria-hidden="true"><span>Play</span></div>
+  <div class="hover-vid" id="hoverVid" aria-hidden="true"><video muted loop playsinline preload="none"></video></div>
+  <header class="nav nav--solid" id="nav">
+    <nav class="nav__side" aria-label="Main">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#services">Services</a>
+      <a href="../index.html#about">About</a>
+    </nav>
+    <a class="nav__mark" href="../index.html" aria-label="Ryan Escandon, home">Ryan <em>Escandon</em></a>
+    <div class="nav__side nav__side--r">
+      <a href="../work/">Archive</a>
+      <a href="../index.html#start" class="nav__cta">Inquire</a>
+      <button class="nav__menu" id="navMenu" aria-expanded="false" aria-controls="navDrawer">Menu</button>
+    </div>
+    <div class="nav__drawer" id="navDrawer">
+      <a href="../index.html#work">Work</a><a href="../index.html#services">Services</a><a href="../index.html#about">About</a><a href="../work/">Archive</a><a href="../index.html#start">Inquire</a>
+    </div>
+  </header>
+  <main id="main">
+  <section class="page-hero">
+    <p class="eyebrow"><a href="../index.html">← Home</a> &nbsp;·&nbsp; The archive</p>
+    <h1 class="display display--xl">Everything <em>I shoot.</em></h1>
+    <p class="page-hero__sub">Originals, on-assignment work and the archive. For the work I do for brands, see <a href="../index.html#work">selected work</a>.</p>
+  </section>
+  <section class="section" style="padding-top:20px">
+    <div class="more" id="moreWork"></div>
+  </section>
+  <section class="section section--bone" id="beijing" hidden>
+    <div class="head">
+      <p class="eyebrow">On assignment</p>
+      <h2 class="display" id="beijingTitle"></h2>
+    </div>
+    <div class="beijing" id="beijingGrid"></div>
+    <div class="beijing__strip" id="beijingStrip"></div>
+  </section>
+  <section class="section" id="archive">
+    <div class="head head--split">
+      <div>
+        <p class="eyebrow">The archive</p>
+        <h2 class="display">More <em>work.</em></h2>
+      </div>
+      <div class="chips" aria-label="Filter work">
+        <button class="chip chip--on" data-kind="all" aria-pressed="true">All</button>
+        <button class="chip" data-kind="brand" aria-pressed="false">Filmed &amp; produced</button>
+        <button class="chip" data-kind="snow" aria-pressed="false">Follow cams</button>
+        <button class="chip" data-kind="athlete" aria-pressed="false">Athletes</button>
+        <button class="chip" data-kind="edit" aria-pressed="false">Edits</button>
+      </div>
+    </div>
+    <div class="archive" id="archiveGrid"></div>
+  </section>
+  </main>
+  <footer class="footer">
+    <a class="footer__big" href="../index.html#start"><span>Let's make</span> <em>something.</em></a>
+    <div class="footer__row">
+      <span>© <span id="year"></span> Ryan Escandon</span>
+      <a id="footInsta" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a id="footMail" href="#">Email</a>
+      <a id="footLightbox" href="#">Lightbox Creative</a>
+      <a href="#main">Back to top ↑</a>
+    </div>
+  </footer>
+  <div class="player" id="player" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Video player">
+    <div class="player__box">
+      <button class="player__close" id="playerClose" aria-label="Close">Close ✕</button>
+      <video class="player__video" id="playerVideo" controls playsinline></video>
+      <p class="player__caption" id="playerCaption"></p>
+    </div>
+  </div>
+  <script src="../data/work.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
