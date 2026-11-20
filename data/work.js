@@ -29,7 +29,7 @@ const CREDITS = [
   "link": "shiffrin-killington"
  },
  {
-  "name": "Beijing 2022 Winter Olympics",
+  "name": "X Games Aspen",
   "confirmed": true
  },
  {
@@ -37,7 +37,7 @@ const CREDITS = [
   "confirmed": true
  },
  {
-  "name": "X Games Aspen",
+  "name": "Beijing 2022 Winter Olympics",
   "confirmed": true
  },
  {
@@ -45,15 +45,19 @@ const CREDITS = [
   "confirmed": true
  },
  {
+  "name": "Killington Slalom World Cup",
+  "confirmed": true
+ },
+ {
   "name": "Fynn Bullock",
   "confirmed": true
  },
  {
-  "name": "Killington World Cup",
+  "name": "Silvaplana World Cup",
   "confirmed": true
  },
  {
-  "name": "Corvatsch, Switzerland",
+  "name": "Vans Pipe Masters",
   "confirmed": true
  }
 ];
@@ -339,23 +343,28 @@ const ACCESS = {
  ],
  "places": [
   {
-   "name": "X Games, Aspen",
+   "name": "X Games Aspen",
+   "detail": "Aspen, Colorado",
    "confirmed": true
   },
   {
-   "name": "Killington, Vermont",
+   "name": "Slalom World Cup",
+   "detail": "Killington, Vermont",
    "confirmed": true
   },
   {
-   "name": "Corvatsch, Switzerland",
+   "name": "Silvaplana World Cup",
+   "detail": "Corvatsch, Switzerland",
    "confirmed": true
   },
   {
-   "name": "Beijing 2022",
+   "name": "Beijing 2022 Winter Olympics",
+   "detail": "Beijing, China",
    "confirmed": true
   },
   {
-   "name": "Idaho",
+   "name": "Vans Pipe Masters",
+   "detail": "Banzai Pipeline, Oʻahu",
    "confirmed": true
   }
  ]
@@ -454,7 +463,7 @@ const ORIGINALS = [
   "file": "assets/video/corvatsch-followcam.mp4",
   "loop": "assets/video/corvatsch-followcam-loop.mp4",
   "poster": "assets/posters/corvatsch-followcam.jpg",
-  "caption": "Corvatsch · Snowboard",
+  "caption": "Silvaplana World Cup · Corvatsch",
   "confirmed": true
  }
 ];
@@ -630,53 +639,53 @@ const BEIJING = {
 const COLLAGE = [
  {
   "src": "assets/img/xgames-03-1400.webp",
-  "x": 1,
-  "y": 2,
-  "w": 28
+  "x": -2,
+  "y": 0,
+  "w": 40
  },
  {
   "video": "assets/video/followcams-02-loop.mp4",
   "poster": "assets/posters/followcams-02.jpg",
-  "x": 34,
-  "y": -9,
-  "w": 9
+  "x": 41,
+  "y": -16,
+  "w": 15
  },
  {
   "src": "assets/img/xgames-01-1400.webp",
-  "x": 64,
-  "y": 0,
-  "w": 24
+  "x": 63,
+  "y": -4,
+  "w": 36
  },
  {
   "src": "assets/img/xgames-02-1400.webp",
-  "x": 1,
-  "y": 36,
-  "w": 13
+  "x": -3,
+  "y": 42,
+  "w": 21
  },
  {
   "video": "assets/video/followcams-01-loop.mp4",
   "poster": "assets/posters/followcams-01.jpg",
-  "x": 86,
-  "y": 36,
-  "w": 12
+  "x": 82,
+  "y": 46,
+  "w": 20
  },
  {
   "src": "assets/img/xgames-07-1400.webp",
-  "x": 15,
-  "y": 67,
-  "w": 24
+  "x": 17,
+  "y": 68,
+  "w": 34
  },
  {
   "video": "assets/video/followcams-06-loop.mp4",
   "poster": "assets/posters/followcams-06.jpg",
-  "x": 46,
-  "y": 64,
-  "w": 9
+  "x": 54,
+  "y": 62,
+  "w": 14
  },
  {
   "src": "assets/img/xgames-09-1400.webp",
-  "x": 61,
-  "y": 69,
-  "w": 24
+  "x": 70,
+  "y": 80,
+  "w": 30
  }
 ];

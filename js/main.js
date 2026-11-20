@@ -160,7 +160,7 @@
 
     /* access */
     $("#accessBody").textContent = ACCESS_LINE;
-    const namesHTML = (arr) => arr.filter(ok).map((t) => `<li${dAttr(t)}>${esc(t.name)}</li>`).join("");
+    const namesHTML = (arr) => arr.filter(ok).map((t) => `<li${dAttr(t)}>${esc(t.name)}${t.detail ? `<small class="names__detail">${esc(t.detail)}</small>` : ""}</li>`).join("");
     $("#accessAthletes").innerHTML = namesHTML(ACCESS.athletes);
     $("#accessPlaces").innerHTML = namesHTML(ACCESS.places);
 
