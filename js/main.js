@@ -132,16 +132,15 @@
     $("#collageHint").textContent = FINE ? "Click a frame" : "Tap a frame";
 
     /* Playground rows */
-    const pgPanel = (it, title) => `
+    const pgPanel = (it, title, bare) => `
       <button class="pg__p" type="button" data-host data-play data-film="${esc(P(it.film))}" data-title="${esc(title)}" aria-label="Play ${esc(title)}" tabindex="-1" style="--arn:${it.arn || 1.7778}">
         <img src="${esc(P(it.poster))}" alt="" loading="lazy" decoding="async">
         <video muted loop playsinline preload="none" data-src="${esc(P(it.loop))}"></video>
-        ${it.n ? `<span class="pg__n" aria-hidden="true">${it.n}</span>` : ""}
-        <span class="pg__lab mono">${esc(it.lab)}</span>
-        <span class="chip-play mono" aria-hidden="true"><i></i>Play film</span>
+        ${bare ? "" : `<span class="pg__lab mono">${esc(it.lab)}</span>
+        <span class="chip-play mono" aria-hidden="true"><i></i>Play film</span>`}
       </button>`;
-    $("#pgPipe").innerHTML = PLAYGROUND.pipe.map((it) => pgPanel(it, PLAYGROUND.pipeTitle)).join("");
-    $("#pgCams").innerHTML = PLAYGROUND.cams.map((it) => pgPanel(it, it.lab)).join("");
+    $("#pgPipe").innerHTML = PLAYGROUND.lines.map((it) => pgPanel(it, it.title)).join("");
+    $("#pgCams").innerHTML = PLAYGROUND.cams.map((it) => pgPanel(it, it.lab, true)).join("");
     $("#pgHint").textContent = FINE ? "Hover to open · Click to watch" : "Tap to open · Tap again to watch · Swipe the follow cams";
 
     /* work list */
@@ -542,9 +541,9 @@
     return { set };
   }
   if ($("#pgPipe")) {
-    accordion($("#pgPipe"), PLAYGROUND.pipeStart, {
+    accordion($("#pgPipe"), PLAYGROUND.linesStart, {
       attract: true,
-      onChange: (i) => { const b = $("#pgCount b"); b.textContent = String(i + 1).padStart(2, "0"); b.classList.remove("roll"); void b.offsetWidth; b.classList.add("roll"); },
+      onChange: (i) => { $("#pgNow").textContent = PLAYGROUND.lines[i].lab; const b = $("#pgCount b"); b.textContent = String(i + 1).padStart(2, "0"); b.classList.remove("roll"); void b.offsetWidth; b.classList.add("roll"); },
     });
     accordion($("#pgCams"), PLAYGROUND.camsStart, { track: true, attract: !isPhone });
   }

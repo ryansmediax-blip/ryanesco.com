@@ -776,38 +776,44 @@ const COLLAGE = [
  }
 ];
 const PLAYGROUND = {
- "pipeTitle": "Koa Smith at Pipe Masters",
- "pipe": [
+ "lines": [
   {
-   "n": "01",
-   "lab": "Drop",
-   "loop": "assets/video/koa-a-loop.mp4",
-   "poster": "assets/posters/koa-a.jpg",
-   "film": "assets/video/koa-pipe-masters.mp4"
+   "lab": "Water",
+   "title": "Reel",
+   "loop": "assets/video/line-water-loop.mp4",
+   "poster": "assets/posters/line-water.jpg",
+   "film": "assets/video/hero-reel.mp4"
   },
   {
-   "n": "02",
-   "lab": "Inside",
-   "loop": "assets/video/koa-b-loop.mp4",
-   "poster": "assets/posters/koa-b.jpg",
-   "film": "assets/video/koa-pipe-masters.mp4"
+   "lab": "Mountain",
+   "title": "Reel",
+   "loop": "assets/video/line-peak-loop.mp4",
+   "poster": "assets/posters/line-peak.jpg",
+   "film": "assets/video/hero-reel.mp4"
   },
   {
-   "n": "03",
-   "lab": "Spit",
-   "loop": "assets/video/koa-c-loop.mp4",
-   "poster": "assets/posters/koa-c.jpg",
-   "film": "assets/video/koa-pipe-masters.mp4"
+   "lab": "Killington",
+   "title": "Shiffrin wins Killington",
+   "loop": "assets/video/line-slalom-loop.mp4",
+   "poster": "assets/posters/line-slalom.jpg",
+   "film": "assets/video/shiffrin-killington.mp4"
   },
   {
-   "n": "04",
-   "lab": "Claim",
-   "loop": "assets/video/koa-d-loop.mp4",
-   "poster": "assets/posters/koa-d.jpg",
-   "film": "assets/video/koa-pipe-masters.mp4"
+   "lab": "X Games",
+   "title": "Reel",
+   "loop": "assets/video/line-xgames-loop.mp4",
+   "poster": "assets/posters/line-xgames.jpg",
+   "film": "assets/video/hero-reel.mp4"
+  },
+  {
+   "lab": "Parabolic",
+   "title": "Parabolic · Episode 01",
+   "loop": "assets/video/line-parabolic-loop.mp4",
+   "poster": "assets/posters/line-parabolic.jpg",
+   "film": "assets/video/filmed-01.mp4"
   }
  ],
- "pipeStart": 2,
+ "linesStart": 1,
  "cams": [
   {
    "lab": "Follow cam",
