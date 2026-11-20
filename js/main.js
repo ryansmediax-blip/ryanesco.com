@@ -83,8 +83,17 @@
       $("#featurePoster").src = P(posterOf(feat));
       const ff = $("#featureFrame");
       ff.dataset.file = P(feat.file); ff.dataset.title = feat.client ? `${feat.client}: ${feat.title}` : feat.title;
-      ff.dataset.loop = P(loopOf(feat));
+      ff.dataset.loop = P(feat.featureLoop || loopOf(feat));
       ff.setAttribute("aria-label", `Play ${ff.dataset.title}`);
+      /* the latest film plays on its own (muted) whenever it's on screen */
+      if (!REDUCED && !SAVE_DATA) {
+        const fv = $("#featureLoop");
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) { if (!fv.src) fv.src = ff.dataset.loop; fv.play().then(() => ff.classList.add("is-playing")).catch(() => {}); }
+          else fv.pause();
+        }, { threshold: 0.35 }).observe(ff);
+        ff.dataset.autoplay = "1";
+      }
     } else $("#feature").remove();
 
     /* collage */
@@ -365,7 +374,7 @@
   const stopVid = (host, v) => { if (v) v.pause(); host.classList.remove("is-playing"); };
 
   /* inline previews: cards, service media, loop nodes, featured frame */
-  const previewables = $$(".card, .svc__media, .node, .feature__frame");
+  const previewables = $$(".card, .svc__media, .node, .feature__frame").filter((el) => !el.dataset.autoplay);
   previewables.forEach((el) => {
     const v = el.querySelector("video");
     const host = el.classList.contains("svc__media") ? el.closest(".svc") : el;

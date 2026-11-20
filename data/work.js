@@ -59,6 +59,10 @@ const CREDITS = [
  {
   "name": "Vans Pipe Masters",
   "confirmed": true
+ },
+ {
+  "name": "Koa Smith",
+  "confirmed": true
  }
 ];
 const QUOTE = null;
@@ -226,6 +230,27 @@ const LOOP_COPY = [
 ];
 const CASES = [
  {
+  "slug": "koa-pipe-masters",
+  "page": false,
+  "client": null,
+  "title": "Koa Smith at Pipe Masters",
+  "tag": "Surf · Vans Pipe Masters",
+  "color": "ice",
+  "offer": "brand-film",
+  "line": "Banzai Pipeline, Oʻahu. Koa Smith deep in the barrel at the Vans Pipe Masters.",
+  "chips": [
+   "16:9",
+   "15 s",
+   "4K"
+  ],
+  "file": "assets/video/koa-pipe-masters.mp4",
+  "loop": "assets/video/koa-pipe-masters-loop.mp4",
+  "featureLoop": "assets/video/koa-pipe-masters-1280.mp4",
+  "poster": "assets/posters/koa-pipe-masters.jpg",
+  "shape": "wide",
+  "confirmed": true
+ },
+ {
   "slug": "river-radamus",
   "page": false,
   "client": null,
@@ -338,6 +363,10 @@ const ACCESS = {
   },
   {
    "name": "Fynn Bullock",
+   "confirmed": true
+  },
+  {
+   "name": "Koa Smith",
    "confirmed": true
   }
  ],
