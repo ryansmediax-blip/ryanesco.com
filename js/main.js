@@ -2,8 +2,8 @@
    RYAN ESCANDON: site behavior (luxury edition)
    Renders content from data/work.js on every page (home, /work,
    case pages), runs the inquiry form and the player, and drives
-   the motion: line rises, scroll-lit statement, floating collage,
-   cursor-following previews, lit lines, process track, marquee.
+   the motion: line rises, scroll-lit statement, X Games burst,
+   Playground rows, cursor-following previews, process track, marquee.
    All motion is off under prefers-reduced-motion.
    ============================================================ */
 
@@ -70,12 +70,12 @@
   $$(".draft-text").forEach((el) => el.setAttribute("data-draft", ""));
 
   /* ---------- a video card (archive, /work, case pages, strip) ---------- */
-  const card = (it, extra = "", label = it.title) => `
+  const card = (it, extra = "", label = it.title || it.tag || "Film") => `
     <article class="card ${extra}" data-play data-file="${esc(P(it.file))}" data-title="${esc(label)}"
       data-loop="${esc(P(it.loop || ""))}" ${it.kind ? `data-kind="${it.kind}"` : ""} tabindex="0" role="button" aria-label="Play ${esc(label)}">
       <img src="${esc(P(it.poster))}" alt="" loading="lazy">
       <video muted loop playsinline preload="none"></video>
-      ${it.title ? `<div class="card__meta">${it.tag ? `<p class="card__tag">${esc(it.tag)}</p>` : ""}<h3 class="card__title">${esc(it.title)}</h3></div>` : ""}
+      ${it.title || it.tag ? `<div class="card__meta">${it.tag ? `<p class="card__tag">${esc(it.tag)}</p>` : ""}${it.title ? `<h3 class="card__title">${esc(it.title)}</h3>` : ""}</div>` : ""}
     </article>`;
 
   /* ==========================================================
@@ -97,27 +97,6 @@
       return `${tag}<i aria-hidden="true">✦</i>`;
     }).join("");
     $("#marqueeTrack").innerHTML = `<div class="marquee__set">${names}</div><div class="marquee__set" aria-hidden="true">${names.replace(/<a /g, '<a tabindex="-1" ')}</div>`;
-
-    /* featured film = first confirmed case */
-    const feat = CASES.filter(ok)[0];
-    if (feat && $("#feature")) {
-      $("#featureTitle").innerHTML = `${esc(feat.client ? feat.client + ": " : "")}<em>${esc(feat.title)}</em>`;
-      $("#featureLine").textContent = `${feat.line}  ·  ${feat.chips.join(" · ")}`;
-      $("#featurePoster").src = P(posterOf(feat));
-      const ff = $("#featureFrame");
-      ff.dataset.file = P(feat.file); ff.dataset.title = feat.client ? `${feat.client}: ${feat.title}` : feat.title;
-      ff.dataset.loop = P(feat.featureLoop || loopOf(feat));
-      ff.setAttribute("aria-label", `Play ${ff.dataset.title}`);
-      /* the latest film plays on its own (muted) whenever it's on screen */
-      if (!REDUCED && !SAVE_DATA) {
-        const fv = $("#featureLoop");
-        new IntersectionObserver(([e]) => {
-          if (e.isIntersecting) { if (!fv.src) fv.src = ff.dataset.loop; fv.play().then(() => ff.classList.add("is-playing")).catch(() => {}); }
-          else fv.pause();
-        }, { threshold: 0.35 }).observe(ff);
-        ff.dataset.autoplay = "1";
-      }
-    } else if ($("#feature")) $("#feature").remove();
 
     /* burst tiles: a still in front, a clip behind it on some */
     $("#collageItems").innerHTML = COLLAGE.map((c, i) => `
@@ -144,7 +123,7 @@
     $("#pgHint").textContent = FINE ? "Hover to open · Click to watch" : "Tap to open · Tap again to watch · Swipe the follow cams";
 
     /* work list */
-    $("#caseRows").innerHTML = CASES.filter(ok).map((c, i) => {
+    $("#caseRows").innerHTML = CASES.filter(ok).filter((c) => c.home !== false).map((c, i) => {
       const title = c.client ? `${c.client}` : c.title;
       const sub = c.client ? c.title : c.line;
       return `
@@ -155,7 +134,7 @@
         <span class="row__title">${esc(title)}</span>
         <span class="row__sub">${esc(sub)}</span>
         <span class="row__tag mono">${esc(c.tag)}</span>
-        ${c.page ? `<a class="row__case" href="${caseUrl(c.slug)}">Case study</a>` : `<span class="row__case row__case--none"></span>`}
+        ${c.page ? `<a class="row__case" href="${caseUrl(c.slug)}">${c.brief || c.result ? "Case study" : "Watch"}</a>` : `<span class="row__case row__case--none"></span>`}
       </li>`;
     }).join("");
 
@@ -180,7 +159,7 @@
             ${proofs.length ? `<p class="svc__proof"><span class="mono">See it</span>${proofs.map((p) => `<a href="${p.link ? caseUrl(p.link) : p.anchor}"${dAttr(caseOf(p.case))}>${esc(p.label)}</a>`).join(" · ")}</p>` : ""}
             <div class="svc__foot">
               <span class="svc__price"${dAttr(o.price)}>${esc(txt(o.price).split(" · ")[0])}</span>
-              ${o.ctas.map((c) => `<a href="#start" class="btn btn--dark btn--sm" data-offer="${c.offer}" data-who="${c.who}">${esc(c.label)}</a>`).join("")}
+              ${o.ctas.map((c, k) => `<a href="#start" class="btn ${k ? "btn--outline-dark" : "btn--dark"} btn--sm" data-offer="${c.offer}" data-who="${c.who}">${esc(c.label)}</a>`).join("")}
             </div>
           </div>
         </div></div></div>
@@ -192,7 +171,7 @@
     }));
 
     /* loop */
-    $("#loopCopy").innerHTML = LOOP_COPY.filter((p) => txt(p)).map((p) => `<p${dAttr(p)}>${esc(txt(p))}</p>`).join("");
+    $("#loopCopy").innerHTML = LOOP_COPY.filter((p) => txt(p)).map((p) => `<p${dAttr(p)}>${esc(txt(p))}</p>`).join("") + `<p>${esc(ACCESS_LINE)}</p>`;
     $("#ringNodes").innerHTML = LOOP.map((n) => `
       <li class="node" data-loop="${esc(P(loopOf(n)))}">
         <span class="node__vid"><video muted loop playsinline preload="none"></video></span>
@@ -201,24 +180,9 @@
         <span class="node__line">${esc(n.line)}</span>
       </li>`).join("");
 
-    /* access */
-    $("#accessBody").textContent = ACCESS_LINE;
-    const namesHTML = (arr) => arr.filter(ok).map((t) => `<li${dAttr(t)}>${esc(t.name)}${t.detail ? `<small class="names__detail">${esc(t.detail)}</small>` : ""}</li>`).join("");
-    $("#accessAthletes").innerHTML = namesHTML(ACCESS.athletes);
-    $("#accessPlaces").innerHTML = namesHTML(ACCESS.places);
-
     /* process */
     $("#steps").innerHTML = STEPS.map((s, i) => `
       <li class="stepc" style="--i:${i}"><span class="stepc__n mono">${s.n}</span><h3>${esc(s.name)}</h3><p>${esc(s.line)}</p></li>`).join("");
-
-    /* originals strip */
-    $("#strip").innerHTML = ORIGINALS.filter(ok).map((o) => o.type === "img"
-      ? `<figure class="tile"${dAttr(o)}><img src="${esc(P(o.src))}" alt="${esc(o.caption)}" loading="lazy"><figcaption class="mono">${esc(o.caption)}</figcaption></figure>`
-      : `<div class="tile tile--v"${dAttr(o)}>${card({ ...o, title: "", tag: "" }, "", o.caption)}<p class="mono tile__cap">${esc(o.caption)}</p></div>`
-    ).join("") + `<a class="tile tile--end" href="work/"><span>The full archive</span><b aria-hidden="true">→</b></a>`;
-    $$("[data-strip]").forEach((b) => b.addEventListener("click", () => {
-      $("#strip").scrollBy({ left: Number(b.dataset.strip) * $("#strip").clientWidth * 0.8, behavior: REDUCED ? "auto" : "smooth" });
-    }));
 
     /* faq */
     $("#faqList").innerHTML = FAQ.filter(ok).map((f, i) => `
@@ -231,12 +195,13 @@
       b.setAttribute("aria-expanded", open); b.parentElement.classList.toggle("qa--open", open);
     }));
 
-    /* about photo fallback */
+    /* about photo: if it is missing, About goes single-column */
     const ph = $("#aboutPhoto img");
-    const noPhoto = () => $("#aboutPhoto").classList.add("about__photo--empty");
-    if (ph.complete && !ph.naturalWidth) noPhoto(); else ph.addEventListener("error", noPhoto);
+    if (ph) {
+      const noPhoto = () => { $("#aboutPhoto").remove(); $(".about").classList.add("about--solo"); };
+      if (ph.complete && !ph.naturalWidth) noPhoto(); else ph.addEventListener("error", noPhoto);
+    }
 
-    $("#lightboxLink").href = LIGHTBOX_URL;
     initForm();
   }
 
@@ -279,7 +244,7 @@
       root.innerHTML = `
         <header class="page-hero"${dAttr(c)}>
           <p class="eyebrow"><a href="${BASE}index.html#work">← Selected work</a> &nbsp;·&nbsp; ${esc(c.tag)}</p>
-          <h1 class="display display--xl">${c.client ? `${esc(c.client)}: ` : ""}<em>${esc(c.title)}</em></h1>
+          <h1 class="display display--xl">${c.client ? `${esc(c.client)}: <em>${esc(c.title)}</em>` : esc(c.title)}</h1>
           <p class="page-hero__sub">${esc(c.line)}</p>
         </header>
         <div class="cs__player cs__player--${c.shape}"><video controls playsinline preload="metadata" poster="${esc(P(c.poster))}" src="${esc(P(c.file))}"></video></div>
@@ -290,7 +255,7 @@
             ${sec("The brief", c.brief, "One sentence: what did the client need?")}
             ${sec("The approach", c.approach, "Athlete, place, conditions: how did you shoot it?")}
             ${sec("Where it ran", c.result, "Where did it run? Any real numbers?")}
-            ${c.related ? `<section class="cs__sec"><h2 class="eyebrow">More from this shoot</h2><div class="cs__related">${c.related.map((r) => card({ ...r, tag: "" })).join("")}</div></section>` : ""}
+            ${c.related ? `<section class="cs__sec"><h2 class="eyebrow">More with ${esc((c.glance && c.glance.Athlete) || "this athlete").split(" ").pop()}</h2><div class="cs__related">${c.related.map((r) => card({ ...r, tag: "" })).join("")}</div></section>` : ""}
           </div>
         </div>
         <section class="cs__cta section section--bone">
@@ -408,11 +373,11 @@
   const stopVid = (host, v) => { if (v) v.pause(); host.classList.remove("is-playing"); };
 
   /* inline previews: cards, service media, loop nodes, featured frame */
-  const previewables = $$(".card, .svc__media, .node, .feature__frame").filter((el) => !el.dataset.autoplay);
+  const previewables = $$(".card, .svc__media, .node");
   previewables.forEach((el) => {
     const v = el.querySelector("video");
     const host = el.classList.contains("svc__media") ? el.closest(".svc") : el;
-    if (FINE && !REDUCED) {
+    if (FINE && !REDUCED && !SAVE_DATA) {
       host.addEventListener("mouseenter", () => startVid(el, v, el.dataset.loop));
       host.addEventListener("mouseleave", () => stopVid(el, v));
     }
@@ -541,6 +506,7 @@
     return { set };
   }
   if ($("#pgPipe")) {
+    $("#pgTotal").textContent = String(PLAYGROUND.lines.length).padStart(2, "0");
     accordion($("#pgPipe"), PLAYGROUND.linesStart, {
       attract: true,
       onChange: (i) => { $("#pgNow").textContent = PLAYGROUND.lines[i].lab; const b = $("#pgCount b"); b.textContent = String(i + 1).padStart(2, "0"); b.classList.remove("roll"); void b.offsetWidth; b.classList.add("roll"); },
@@ -552,7 +518,7 @@
   const photoBox = $("#photoBox");
   const openPhoto = (src) => {
     lastFocus = document.activeElement;
-    $("#photoImg").src = src; $("#photoCap").textContent = "X Games Aspen 2025";
+    $("#photoImg").src = src; $("#photoImg").alt = "X Games Aspen 2025, photo"; $("#photoCap").textContent = "X Games Aspen 2025";
     photoBox.classList.add("player--open"); photoBox.setAttribute("aria-hidden", "false");
     body.style.overflow = "hidden"; $("#photoClose").focus();
   };
@@ -564,7 +530,10 @@
   if (photoBox) {
     $("#photoClose").addEventListener("click", closePhoto);
     photoBox.addEventListener("click", (e) => { if (e.target === photoBox) closePhoto(); });
-    addEventListener("keydown", (e) => { if (e.key === "Escape") closePhoto(); });
+    addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closePhoto();
+      if (e.key === "Tab" && photoBox.classList.contains("player--open")) { e.preventDefault(); $("#photoClose").focus(); }
+    });
   }
   /* Pipe Masters band: a background film that plays while on screen; click to watch */
   const pipeV = $("#pipeVideo");
@@ -610,7 +579,7 @@
   const rvIO = new IntersectionObserver((es) => es.forEach((e) => {
     if (e.isIntersecting) { e.target.classList.add("in"); rvIO.unobserve(e.target); }
   }), { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-  const rvSel = ".display:not(.collage__title), .pg__row, .pg__sub, .eyebrow, .rv, .row, .svc, .node, .names li, .stepc, .card, .tile, .qa, .about__text p, .feature__frame, .start__intro p, .form";
+  const rvSel = ".display:not(.collage__title), .pg__row, .pg__sub, .eyebrow, .rv, .row, .svc, .node, .stepc, .card, .qa, .about__text p, .start__intro p, .form";
   $$(rvSel).forEach((el) => el.classList.add("rv"));
   if (REDUCED) $$(".rv").forEach((el) => el.classList.add("in"));
   else $$(".rv").forEach((el) => rvIO.observe(el));
@@ -643,7 +612,7 @@
   /* scroll-linked scenes */
   const nav = $("#nav"), heroEl = $(".hero"), words = $$(".sw"), stEl = $("#statement");
   const collage = $("#collage"), ctitle = $(".collage__title"), tiles = $$(".ctile"), clipTiles = $$(".ctile--clip");
-  const lines = $$("#linesList li"), proc = $("#track"), fill = $("#trackFill");
+  const proc = $("#track"), fill = $("#trackFill");
   const progIn = (el, start = 0.85, len = 0.9) => { if (!el) return 0; const r = el.getBoundingClientRect(); return clamp((innerHeight * start - r.top) / (r.height * len)); };
 
   let lastY = scrollY, vel = 0, mx = 0, paused = false, ticking = false;
@@ -688,18 +657,13 @@
         if (!onScreen) t._forced = false;
       });
     }
-    if (pipeV) { const r = pipeV.parentElement.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) pipeV.parentElement.style.setProperty("--bp", clamp((innerHeight - r.top) / (innerHeight + r.height)).toFixed(3)); }
-    if (lines.length) {
-      const mid = innerHeight / 2;
-      lines.forEach((li) => { const r = li.getBoundingClientRect(); li.classList.toggle("lit", Math.abs(r.top + r.height / 2 - mid) < innerHeight * 0.18); });
-    }
     if (proc && fill) fill.style.setProperty("--p", progIn(proc).toFixed(3));
     if (proc) $$(".stepc").forEach((s, i, all) => s.classList.toggle("on", progIn(proc) >= i / all.length));
   };
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   addEventListener("resize", frame);
   frame();
-  if (REDUCED) { words.forEach((w) => w.classList.add("lit")); lines.forEach((l) => l.classList.add("lit")); if (fill) fill.style.setProperty("--p", 1); if (ctitle) ctitle.classList.add("in"); tiles.forEach((t) => { t.style.setProperty("--b", 1); t.style.setProperty("--o", 1); }); $$(".stepc").forEach((s) => s.classList.add("on")); }
+  if (REDUCED) { words.forEach((w) => w.classList.add("lit")); if (fill) fill.style.setProperty("--p", 1); if (ctitle) ctitle.classList.add("in"); tiles.forEach((t) => { t.style.setProperty("--b", 1); t.style.setProperty("--o", 1); }); $$(".stepc").forEach((s) => s.classList.add("on")); }
 
   /* marquee: drifts on its own, speeds up while you scroll, only while on screen */
   if (track && !REDUCED) {

@@ -12,8 +12,8 @@ const HERO = {
  "poster": "assets/posters/hero-action.jpg",
  "reel": "assets/video/hero-reel.mp4",
  "sub": {
-  "text": "For ski, snow and surf brands, resorts, hotels and travel companies. I bring the riding, the place and the camera. You get a film people actually watch.",
-  "fallback": "For ski, snow and surf brands, resorts, hotels and travel companies. I film your athletes in the places people want to be. You get a film people actually watch.",
+  "text": "For ski, snow and surf brands, resorts, hotels and travel companies. I bring the riding, the place and the camera. You get a film people watch.",
+  "fallback": "For ski, snow and surf brands, resorts, hotels and travel companies. I film your athletes in the places people want to be. You get a film people watch.",
   "confirmed": true
  },
  "price": {
@@ -68,48 +68,9 @@ const CREDITS = [
 const QUOTE = null;
 const OFFERS = [
  {
-  "id": "brand-film",
-  "color": "orange",
-  "sticker": "Signature",
-  "kicker": "01 / Brands & products",
-  "name": "Brand Film",
-  "pitch": "Your product, used for real, in the place it was made for.",
-  "for": "Ski, snow, surf, outdoor, fitness and travel-gear brands. Bigger launch? We'll scope it together.",
-  "includes": [
-   "Plan and treatment",
-   "Location and permits",
-   {
-    "text": "Athletes, yours or mine",
-    "confirmed": true
-   },
-   "Filming, edit, colour"
-  ],
-  "deliverables": [
-   "Hero film",
-   "Social cuts"
-  ],
-  "proof": [],
-  "loop": "assets/video/filmed-07-loop.mp4",
-  "poster": "assets/posters/filmed-07.jpg",
-  "loopFallback": "assets/video/filmed-07-loop.mp4",
-  "posterFallback": "assets/posters/filmed-07.jpg",
-  "price": {
-   "text": "Projects from $5K · Hero film + social cuts",
-   "fallback": "Scoped per project · Hero film + social cuts",
-   "confirmed": true
-  },
-  "ctas": [
-   {
-    "label": "Work with me",
-    "offer": "brand-film",
-    "who": "brand"
-   }
-  ]
- },
- {
   "id": "partnership",
   "color": "lime",
-  "kicker": "02 / Athlete partnerships",
+  "kicker": "01 / Athlete partnerships",
   "name": "Athlete × Brand",
   "pitch": "The brand pays for the shoot. The athlete posts it.",
   "for": "Brands that want an athlete's reach, and athletes who want a paying partner.",
@@ -155,7 +116,7 @@ const OFFERS = [
  {
   "id": "destination",
   "color": "ice",
-  "kicker": "03 / Resorts, hotels & travel",
+  "kicker": "02 / Resorts, hotels & travel",
   "name": "Destination Film",
   "pitch": "Make people book the trip.",
   "for": {
@@ -219,12 +180,8 @@ const LOOP = [
 ];
 const LOOP_COPY = [
  {
-  "text": "Athletes have the audience but not the budget. Brands and resorts have the budget and need something real to show. I put them in the same shot. The brand funds the production, the athlete gets a paid partnership, and the place gets seen by people who might go there.",
-  "confirmed": true
- },
- {
-  "text": "Most brand films start from zero: find a crew, find a location, find talent, hope for snow. I'm already out there most of the season with athletes worth filming. Your brand joins a shoot that has a reason to exist.",
-  "fallback": "Most brand films start from zero: find a crew, find a location, find talent, hope for snow. I'm already out there most of the season. Your brand joins a shoot that has a reason to exist.",
+  "text": "Most shoots start from zero: find a crew, find a location, find talent, hope for snow. I'm already out there most of the season with athletes worth filming. Your brand joins a shoot that has a reason to exist.",
+  "fallback": "Most shoots start from zero: find a crew, find a location, find talent, hope for snow. I'm already out there most of the season. Your brand joins a shoot that has a reason to exist.",
   "confirmed": true
  }
 ];
@@ -233,20 +190,15 @@ const CASES = [
   "slug": "koa-pipe-masters",
   "page": false,
   "client": null,
-  "title": "Koa Smith at Pipe Masters",
-  "tag": "Surf · Vans Pipe Masters",
+  "title": "Koa Smith, Vans Pipe Masters",
+  "tag": "Surf · Oʻahu",
   "color": "ice",
-  "offer": "brand-film",
-  "line": "Banzai Pipeline, Oʻahu. Koa Smith deep in the barrel at the Vans Pipe Masters.",
-  "chips": [
-   "16:9",
-   "15 s",
-   "4K"
-  ],
+  "offer": "partnership",
+  "line": "Banzai Pipeline. Deep in the barrel.",
+  "home": false,
   "file": "assets/video/koa-pipe-masters.mp4",
   "loop": "assets/video/koa-pipe-masters-loop.mp4",
-  "featureLoop": "assets/video/koa-pipe-masters-1280.mp4",
-  "poster": "assets/posters/hero-action.jpg",
+  "poster": "assets/posters/koa-pipe-masters.jpg",
   "shape": "wide",
   "confirmed": true
  },
@@ -259,11 +211,6 @@ const CASES = [
   "color": "ice",
   "offer": "partnership",
   "line": "A day with the US Ski Team racer, from the tuning room to the gates.",
-  "chips": [
-   "16:9",
-   "48 s",
-   "Spec"
-  ],
   "file": "assets/video/river-radamus.mp4",
   "loop": "assets/video/river-radamus-loop.mp4",
   "poster": "assets/posters/river-radamus.jpg",
@@ -278,11 +225,7 @@ const CASES = [
   "tag": "Football · Boise State",
   "color": "ice",
   "offer": "partnership",
-  "line": "Boise State's No. 2 under the lights, on the blue. Filmed and edited by me.",
-  "chips": [
-   "16:9",
-   "21 s"
-  ],
+  "line": "Boise State's No. 2 under the lights, on the blue.",
   "file": "assets/video/jeanty.mp4",
   "loop": "assets/video/jeanty-loop.mp4",
   "poster": "assets/posters/jeanty.jpg",
@@ -294,14 +237,10 @@ const CASES = [
   "page": true,
   "client": null,
   "title": "Shiffrin wins Killington",
-  "tag": "Athlete · World Cup",
+  "tag": "Ski · Killington World Cup",
   "color": "lime",
   "offer": "partnership",
-  "line": "A World Cup win at Killington, cut for the feed.",
-  "chips": [
-   "4:5",
-   "51 s"
-  ],
+  "line": "Mikaela Shiffrin's World Cup slalom win at Killington, cut as a 51-second film for social.",
   "file": "assets/video/shiffrin-killington.mp4",
   "loop": "assets/video/shiffrin-killington-loop.mp4",
   "poster": "assets/posters/shiffrin-killington.jpg",
@@ -314,12 +253,12 @@ const CASES = [
   },
   "related": [
    {
-    "title": "Shiffrin 01",
+    "title": "",
     "file": "assets/video/shiffrin-01.mp4",
     "poster": "assets/posters/shiffrin-01.jpg"
    },
    {
-    "title": "Shiffrin 02",
+    "title": "",
     "file": "assets/video/shiffrin-02.mp4",
     "poster": "assets/posters/shiffrin-02.jpg"
    }
@@ -336,10 +275,7 @@ const CASES = [
   "tag": "Hospitality · Build film",
   "color": "ice",
   "offer": "destination",
-  "line": "A floating sauna, from build to finished.",
-  "chips": [
-   "9:16"
-  ],
+  "line": "A floating sauna, start to finish.",
   "file": "assets/video/sauna-build.mp4",
   "loop": "assets/video/sauna-build-loop.mp4",
   "poster": "assets/posters/sauna-build.jpg",
@@ -347,58 +283,7 @@ const CASES = [
   "confirmed": true
  }
 ];
-const ACCESS = {
- "athletes": [
-  {
-   "name": "Mikaela Shiffrin",
-   "confirmed": true
-  },
-  {
-   "name": "River Radamus",
-   "confirmed": true
-  },
-  {
-   "name": "Baron Mamiya",
-   "confirmed": true
-  },
-  {
-   "name": "Fynn Bullock",
-   "confirmed": true
-  },
-  {
-   "name": "Koa Smith",
-   "confirmed": true
-  }
- ],
- "places": [
-  {
-   "name": "X Games Aspen",
-   "detail": "Aspen, Colorado",
-   "confirmed": true
-  },
-  {
-   "name": "Slalom World Cup",
-   "detail": "Killington, Vermont",
-   "confirmed": true
-  },
-  {
-   "name": "Silvaplana World Cup",
-   "detail": "Corvatsch, Switzerland",
-   "confirmed": true
-  },
-  {
-   "name": "Beijing 2022 Winter Olympics",
-   "detail": "Beijing, China",
-   "confirmed": true
-  },
-  {
-   "name": "Vans Pipe Masters",
-   "detail": "Banzai Pipeline, Oʻahu",
-   "confirmed": true
-  }
- ]
-};
-const ACCESS_LINE = "Getting the right rider to the right place on the right day is most of the job. That's the part I already do every season.";
+const ACCESS_LINE = "Getting the right rider to the right place on the right day is most of the job.";
 const STEPS = [
  {
   "n": "01",
@@ -426,76 +311,6 @@ const STEPS = [
   "line": "A hero film and the cuts for where it will run."
  }
 ];
-const ORIGINALS = [
- {
-  "type": "img",
-  "src": "assets/img/xgames-01-1400.webp",
-  "caption": "X Games Aspen 2025",
-  "confirmed": true
- },
- {
-  "type": "video",
-  "file": "assets/video/followcams-06.mp4",
-  "loop": "assets/video/followcams-06-loop.mp4",
-  "poster": "assets/posters/followcams-06.jpg",
-  "caption": "Follow cam",
-  "confirmed": true
- },
- {
-  "type": "img",
-  "src": "assets/img/xgames-04-1400.webp",
-  "caption": "X Games Aspen 2025",
-  "confirmed": true
- },
- {
-  "type": "img",
-  "src": "assets/img/xgames-03-1400.webp",
-  "caption": "X Games Aspen 2025 · Superpipe",
-  "confirmed": true
- },
- {
-  "type": "img",
-  "src": "assets/img/xgames-08-1400.webp",
-  "caption": "X Games Aspen 2025",
-  "confirmed": true
- },
- {
-  "type": "img",
-  "src": "assets/img/beijing-slopestyle-air-h1000.webp",
-  "caption": "Beijing 2022 · Slopestyle",
-  "confirmed": true
- },
- {
-  "type": "img",
-  "src": "assets/img/beijing-portrait-oakley-h1000.webp",
-  "caption": "Beijing 2022 · Portrait",
-  "confirmed": true
- },
- {
-  "type": "video",
-  "file": "assets/video/followcams-02.mp4",
-  "loop": "assets/video/followcams-02-loop.mp4",
-  "poster": "assets/posters/followcams-02.jpg",
-  "caption": "Follow cam",
-  "confirmed": true
- },
- {
-  "type": "video",
-  "file": "assets/video/filmed-07.mp4",
-  "loop": "assets/video/filmed-07-loop.mp4",
-  "poster": "assets/posters/filmed-07.jpg",
-  "caption": "Park laps · Freeski",
-  "confirmed": true
- },
- {
-  "type": "video",
-  "file": "assets/video/corvatsch-followcam.mp4",
-  "loop": "assets/video/corvatsch-followcam-loop.mp4",
-  "poster": "assets/posters/corvatsch-followcam.jpg",
-  "caption": "Silvaplana World Cup · Corvatsch",
-  "confirmed": true
- }
-];
 const FAQ = [
  {
   "q": "What does a project cost?",
@@ -511,22 +326,13 @@ const FAQ = [
   "q": "Do you travel?",
   "a": "Yes. Travel and lodging are handled per project.",
   "confirmed": true
- },
- {
-  "q": "Do you shoot real estate?",
-  "a": "Idaho listing media lives at Lightbox Creative.",
-  "link": {
-   "label": "Go to Lightbox Creative",
-   "href": "https://lightboxidaho.com"
-  },
-  "confirmed": true
  }
 ];
 const MORE_WORK = [
  {
   "shape": "portrait",
   "title": "Park laps",
-  "tag": "Freeski · 4:5",
+  "tag": "Freeski",
   "file": "assets/video/filmed-07.mp4",
   "loop": "assets/video/filmed-07-loop.mp4",
   "poster": "assets/posters/filmed-07.jpg"
@@ -537,105 +343,91 @@ const ARCHIVE = [
   "kind": "brand",
   "file": "assets/video/filmed-01.mp4",
   "poster": "assets/posters/filmed-01.jpg",
-  "title": "Filmed & Produced 01",
-  "tag": "Film + Edit"
+  "title": "",
+  "tag": "Film + edit"
  },
  {
   "kind": "brand",
   "file": "assets/video/filmed-02.mp4",
   "poster": "assets/posters/filmed-02.jpg",
-  "title": "Filmed & Produced 02",
-  "tag": "Film + Edit"
+  "title": "",
+  "tag": "Film + edit"
  },
  {
   "kind": "brand",
   "file": "assets/video/filmed-03.mp4",
   "poster": "assets/posters/filmed-03.jpg",
-  "title": "Filmed & Produced 03",
-  "tag": "Film + Edit"
+  "title": "",
+  "tag": "Film + edit"
  },
  {
   "kind": "brand",
   "file": "assets/video/filmed-04.mp4",
   "poster": "assets/posters/filmed-04.jpg",
-  "title": "Filmed & Produced 04",
-  "tag": "Film + Edit"
+  "title": "",
+  "tag": "Film + edit"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-01.mp4",
   "poster": "assets/posters/followcams-01.jpg",
-  "title": "Follow Cam 01",
-  "tag": "Follow Cam"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-02.mp4",
   "poster": "assets/posters/followcams-02.jpg",
-  "title": "Follow Cam 02",
-  "tag": "Follow Cam"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-03.mp4",
   "poster": "assets/posters/followcams-03.jpg",
-  "title": "Follow Cam 03",
-  "tag": "Follow Cam"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-04.mp4",
   "poster": "assets/posters/followcams-04.jpg",
-  "title": "Follow Cam 04",
-  "tag": "Follow Cam"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-05.mp4",
   "poster": "assets/posters/followcams-05.jpg",
-  "title": "Follow Cam 05",
-  "tag": "Follow Cam"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-06.mp4",
   "poster": "assets/posters/followcams-06.jpg",
-  "title": "Follow Cam 06",
-  "tag": "Follow Cam"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "snow",
   "file": "assets/video/followcams-07.mp4",
   "poster": "assets/posters/followcams-07.jpg",
-  "title": "Follow Cam 07",
-  "tag": "Follow Cam"
- },
- {
-  "kind": "athlete",
-  "file": "assets/video/shiffrin-01.mp4",
-  "poster": "assets/posters/shiffrin-01.jpg",
-  "title": "Athlete content 01",
-  "tag": "Athlete content"
- },
- {
-  "kind": "athlete",
-  "file": "assets/video/shiffrin-02.mp4",
-  "poster": "assets/posters/shiffrin-02.jpg",
-  "title": "Athlete content 02",
-  "tag": "Athlete content"
+  "title": "",
+  "tag": "Follow cam"
  },
  {
   "kind": "edit",
   "file": "assets/video/editing-01.mp4",
   "poster": "assets/posters/editing-01.jpg",
-  "title": "Edit 01",
+  "title": "",
   "tag": "Edit"
  },
  {
   "kind": "edit",
   "file": "assets/video/editing-02.mp4",
   "poster": "assets/posters/editing-02.jpg",
-  "title": "Edit 02",
+  "title": "",
   "tag": "Edit"
  }
 ];
@@ -779,14 +571,14 @@ const PLAYGROUND = {
  "lines": [
   {
    "lab": "Water",
-   "title": "Reel",
+   "title": "Showreel",
    "loop": "assets/video/line-water-loop.mp4",
    "poster": "assets/posters/line-water.jpg",
    "film": "assets/video/hero-reel.mp4"
   },
   {
    "lab": "Mountain",
-   "title": "Reel",
+   "title": "Showreel",
    "loop": "assets/video/line-peak-loop.mp4",
    "poster": "assets/posters/line-peak.jpg",
    "film": "assets/video/hero-reel.mp4"
@@ -800,7 +592,7 @@ const PLAYGROUND = {
   },
   {
    "lab": "X Games",
-   "title": "Reel",
+   "title": "Showreel",
    "loop": "assets/video/line-xgames-loop.mp4",
    "poster": "assets/posters/line-xgames.jpg",
    "film": "assets/video/hero-reel.mp4"

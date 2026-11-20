@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://ryanesco.com/">
   <meta property="og:image" content="https://ryanesco.com/assets/posters/koa-pipe-masters.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0a'/%3E%3Ctext x='50' y='67' font-family='Garamond,Georgia,serif' font-style='italic' font-size='50' fill='%23efebe4' text-anchor='middle'%3ERE%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b0b0a'/%3E%3Ctext x='50' y='67' font-family='Helvetica,Arial,sans-serif' font-weight='600' letter-spacing='-3' font-size='46' fill='%23efebe4' text-anchor='middle'%3ERE%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -29,7 +29,6 @@
     "areaServed": "Worldwide",
     "founder": { "@type": "Person", "name": "Ryan Escandon", "jobTitle": "Filmmaker", "sameAs": ["https://www.instagram.com/ryanescandon/"] },
     "makesOffer": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Film", "description": "Brand and product films with real athletes on real mountains and waves." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Athlete × Brand Partnership", "description": "The brand pays for the shoot. The athlete posts it." } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Destination Film", "description": "Films and drone for resorts, hotels and travel companies." } }
     ]
@@ -80,7 +79,7 @@
   <!-- ============ STATEMENT (scroll-lit words) ============ -->
   <section class="statement" id="statement">
     <p class="eyebrow">The idea</p>
-    <p class="statement__text scrub" id="statementText">I film athletes in the places people want to be. Brands, resorts and travel companies pay to be part of it. The athlete gets a partner. The place gets seen. Every shoot feeds the next one.</p>
+    <p class="statement__text scrub" id="statementText">I film athletes in the places people want to be. Brands, resorts and travel companies pay to be part of it. The athlete gets a partner. The place gets seen.</p>
     <p class="statement__price mono" id="heroPrice"></p>
   </section>
 
@@ -88,15 +87,14 @@
   <section class="bgfilm" id="pipe" aria-label="Koa Smith at the Vans Pipe Masters">
     <video class="bgfilm__video" id="pipeVideo" muted loop playsinline preload="none" poster="assets/posters/koa-pipe-masters.jpg"
       data-src="assets/video/koa-pipe-masters-1280.mp4" data-src-m="assets/video/koa-pipe-masters-720.mp4"></video>
-    <div class="bgfilm__veil"></div>
-    <button class="bgfilm__play" id="pipePlay" data-play data-film="assets/video/koa-pipe-masters.mp4" data-title="Koa Smith at Pipe Masters" aria-label="Play Koa Smith at Pipe Masters">
-      <span class="mono">Koa Smith · Vans Pipe Masters · Banzai Pipeline</span><i aria-hidden="true"></i>
+    <button class="bgfilm__play" id="pipePlay" data-play data-film="assets/video/koa-pipe-masters.mp4" data-title="Koa Smith, Vans Pipe Masters" aria-label="Play Koa Smith at the Vans Pipe Masters">
+      <span class="mono">Koa Smith · Banzai Pipeline, Oʻahu</span><i aria-hidden="true"></i>
     </button>
   </section>
 
   <!-- ============ CREDITS ============ -->
-  <section class="credits" aria-label="On the hill with, on the job for">
-    <p class="eyebrow eyebrow--center">On the hill with &amp; on the job for</p>
+  <section class="credits" aria-label="Filmed at and with">
+    <p class="eyebrow eyebrow--center">Filmed at and with</p>
     <div class="marquee" id="marquee"><div class="marquee__track" id="marqueeTrack"></div></div>
   </section>
 
@@ -107,7 +105,7 @@
       <h2 class="display" id="pgTitle">Pick a line. <em>Watch it run.</em></h2>
     </div>
     <div class="pg__row pg__row--pipe" id="pgPipe" role="group" aria-label="Films"></div>
-    <div class="pg__meta mono"><span id="pgNow">Mountain</span><span class="pg__count" id="pgCount"><b>02</b> / 05</span></div>
+    <div class="pg__meta mono"><span id="pgNow"></span><span class="pg__count" id="pgCount"><b></b> / <span id="pgTotal"></span></span></div>
     <h3 class="pg__sub">Follow cams. <em>One turn behind.</em></h3>
     <div class="pg__row pg__row--cams" id="pgCams" role="group" aria-label="Follow cams"></div>
     <p class="pg__hint mono" id="pgHint"></p>
@@ -126,18 +124,11 @@
   <!-- ============ WORK LIST ============ -->
   <section class="section" id="work">
     <div class="head">
-      <p class="eyebrow">Selected work</p>
-      <h2 class="display">The work, <em>and what it was for.</em></h2>
+      <p class="eyebrow">Work</p>
+      <h2 class="display">Selected <em>work.</em></h2>
     </div>
     <ol class="worklist" id="caseRows"></ol>
     <p class="center"><a class="link-arrow" href="work/">See the full archive</a></p>
-  </section>
-
-  <!-- ============ LINES ============ -->
-  <section class="lines" aria-label="What I shoot">
-    <ul class="lines__list" id="linesList">
-      <li>Ski.</li><li>Snowboard.</li><li>Surf.</li><li>Resorts.</li><li>Brands.</li><li><em>Worldwide.</em></li>
-    </ul>
   </section>
 
   <!-- ============ SERVICES ============ -->
@@ -145,9 +136,9 @@
     <div class="head head--split">
       <div>
         <p class="eyebrow">Services</p>
-        <h2 class="display">What you need, <em>I bring.</em></h2>
+        <h2 class="display">Two ways <em>to work together.</em></h2>
       </div>
-      <p class="head__aside">Three ways to work together. Every project is scoped on a call, then quoted.</p>
+      <p class="head__aside">Every project is scoped on a call, then quoted.</p>
     </div>
     <div class="services" id="offers"></div>
   </section>
@@ -164,21 +155,6 @@
     </div>
   </section>
 
-  <!-- ============ ACCESS ============ -->
-  <section class="section section--bone" id="access">
-    <div class="access">
-      <div>
-        <p class="eyebrow">The access</p>
-        <h2 class="display">The access is <em>the product.</em></h2>
-        <p class="access__body" id="accessBody"></p>
-      </div>
-      <div class="access__cols">
-        <div><p class="eyebrow eyebrow--dim">Athletes I've filmed</p><ul class="names" id="accessAthletes"></ul></div>
-        <div><p class="eyebrow eyebrow--dim">Places I've filmed</p><ul class="names" id="accessPlaces"></ul></div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ PROCESS ============ -->
   <section class="section" id="process">
     <div class="head">
@@ -191,27 +167,12 @@
     </div>
   </section>
 
-  <!-- ============ ORIGINALS ============ -->
-  <section class="section section--flush" id="originals">
-    <div class="head head--split">
-      <div>
-        <p class="eyebrow">Originals &amp; on assignment</p>
-        <h2 class="display">On assignment, <em>and on my own time.</em></h2>
-      </div>
-      <div class="strip-nav">
-        <button class="round" data-strip="-1" aria-label="Scroll left">←</button>
-        <button class="round" data-strip="1" aria-label="Scroll right">→</button>
-      </div>
-    </div>
-    <div class="strip" id="strip"></div>
-  </section>
-
   <!-- ============ FAQ ============ -->
   <section class="section section--bone" id="faq">
     <div class="faq">
       <div>
         <p class="eyebrow">FAQ</p>
-        <h2 class="display">Questions <em>buyers ask.</em></h2>
+        <h2 class="display">Before <em>we talk.</em></h2>
       </div>
       <div class="faq__list" id="faqList"></div>
     </div>
@@ -219,18 +180,12 @@
 
   <!-- ============ ABOUT ============ -->
   <section class="section" id="about">
-    <div class="about">
-      <figure class="about__photo" id="aboutPhoto">
-        <!-- PHOTO: Ryan on location with a camera, 4:5. Save as assets/img/ryan.jpg -->
-        <img src="assets/img/ryan.jpg" alt="Ryan Escandon filming on location" loading="lazy">
-        <div class="about__mark" aria-hidden="true"><em>RE</em></div>
-      </figure>
+    <div class="about about--solo">
       <div class="about__text">
         <p class="eyebrow">Who you're hiring</p>
         <h2 class="display">I ride. <em>Then I film it.</em></h2>
         <p>I'm Ryan Escandon. I shoot and cut films for athletes, and for the brands, resorts and travel companies that want to stand next to them.</p>
         <p>Based in Idaho. On the road most of the year.</p>
-        <p class="about__lightbox">Listing media in Idaho? <a id="lightboxLink" href="#">That's Lightbox Creative</a></p>
       </div>
     </div>
   </section>
@@ -241,7 +196,7 @@
       <div class="start__intro">
         <p class="eyebrow">Inquire</p>
         <h2 class="display">Tell me what <em>you're making.</em></h2>
-        <p>A few questions so I can come back with ideas and a ballpark. Projects start at $5K.</p>
+        <p>A few questions, then I'll come back with ideas and a rough number. Projects start at $5K.</p>
         <p class="start__mail">Or write to <a id="mailLink" href="#"></a></p>
       </div>
       <form class="form" id="startForm" novalidate>
@@ -317,7 +272,7 @@
             </div>
           </div>
 
-          <label class="field">What's the challenge?<textarea name="message" rows="4" placeholder="e.g. A new board launches in January and we need it on snow, not in a studio."></textarea></label>
+          <label class="field">Tell me about it<textarea name="message" rows="4" placeholder="e.g. A new board launches in January and we need it on snow, not in a studio."></textarea></label>
           <button class="btn btn--dark btn--wide" type="submit">Send inquiry</button>
         </fieldset>
         <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
