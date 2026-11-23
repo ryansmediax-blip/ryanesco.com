@@ -687,3 +687,10 @@ body[data-page="case"] .footer__big { display: none; }
 .cs__photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .cs__photos .photo { aspect-ratio: 4 / 5; cursor: zoom-in; }
 @media (max-width: 760px) { .cs__photos { grid-template-columns: 1fr 1fr; gap: 8px; } }
+
+/* Shiffrin: the spec spot */
+.cs__spec { margin-top: 22px; }
+.cs__spec video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 3px; background: #000; }
+/* Western Sol: a wide lead still beside a tall one */
+.cs__photos .photo--wide { grid-column: span 2; aspect-ratio: auto; }
+@media (max-width: 760px) { .cs__photos .photo--wide, .cs__photos .photo--tall { grid-column: 1 / -1; } }

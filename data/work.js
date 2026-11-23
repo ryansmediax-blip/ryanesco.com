@@ -253,7 +253,8 @@ const CASES = [
   "glance": {
    "Athlete": "Mikaela Shiffrin",
    "Location": "Killington, Vermont",
-   "Deliverables": "51 s social film, 4:5"
+   "Deliverables": "51 s social film, 4:5",
+   "Also": "12 s spec ad, adidas Terrex"
   },
   "related": [
    {
@@ -267,6 +268,12 @@ const CASES = [
     "poster": "assets/posters/shiffrin-02.jpg"
    }
   ],
+  "spec": {
+   "label": "The other side: a brand spot",
+   "line": "A 12-second spec ad for adidas Terrex. Mikaela in training, lit and cut like a brand spot. A spec piece, not an adidas commission.",
+   "file": "assets/video/shiffrin-terrex-spec.mp4",
+   "poster": "assets/posters/shiffrin-terrex-spec.jpg"
+  },
   "brief": null,
   "approach": null,
   "result": null
@@ -308,6 +315,16 @@ const CASES = [
    }
   ],
   "photos": [
+   {
+    "src": "assets/img/westernsol-property.jpg",
+    "span": "wide",
+    "alt": "Mountain home at dusk with a Western Sol sauna beside the patio, fire pit on the lawn"
+   },
+   {
+    "src": "assets/img/westernsol-sunset-interior.jpg",
+    "span": "tall",
+    "alt": "Inside a Western Sol sauna at sunset, cedar benches and heater, trees through the glass wall"
+   },
    {
     "src": "assets/img/westernsol-cube.jpg",
     "alt": "Western Sol cube sauna with a black frame and glass front, set in pines"
