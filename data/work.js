@@ -7,12 +7,12 @@ const FORM_3D_TOUR = {
  "confirmed": false
 };
 const HERO = {
- "loop": "assets/video/hero-action-1280.mp4",
- "loopMobile": "assets/video/hero-action-720.mp4",
+ "loop": "assets/video/hero-action-1920.mp4",
+ "loopMobile": "assets/video/hero-action-m.mp4",
  "poster": "assets/posters/hero-action.jpg",
  "reel": "assets/video/hero-reel.mp4",
  "sub": {
-  "text": "For ski, snow and surf brands, resorts, hotels and travel companies. I bring the riding, the place and the camera. You get a film people watch.",
+  "text": "For ski, snow and surf brands, and the lodges, cabins and hotels where people ride. I bring the riders, the place and the camera. You get a film people watch.",
   "fallback": "For ski, snow and surf brands, resorts, hotels and travel companies. I film your athletes in the places people want to be. You get a film people watch.",
   "confirmed": true
  },
@@ -116,31 +116,30 @@ const OFFERS = [
  {
   "id": "destination",
   "color": "ice",
-  "kicker": "02 / Resorts, hotels & travel",
-  "name": "Destination Film",
-  "pitch": "Make people book the trip.",
-  "for": {
-   "text": "Resorts, lodges, hotels and travel companies.",
-   "confirmed": true
-  },
+  "kicker": "02 / Hospitality partnerships",
+  "name": "Athlete × Hospitality",
+  "pitch": "Put real riding on your property.",
+  "for": "Ski-in/ski-out lodges, luxury condos and cabins, boutique hotels, and the lifestyle brands around them.",
   "includes": [
-   "Scouting",
-   "Filming and drone"
+   "Athletes on site",
+   "Filming and drone",
+   "Stills of the property",
+   "Cuts for your channels and theirs"
   ],
   "deliverables": [
    "Hero film",
-   "Drone cut",
-   "Social cuts"
+   "Social cuts",
+   "Stills"
   ],
   "proof": [
    {
-    "label": "The sauna build",
-    "anchor": "#work",
-    "case": "sauna-build"
+    "label": "Western Sol saunas",
+    "link": "western-sol",
+    "case": "western-sol"
    }
   ],
-  "loop": "assets/video/sauna-build-loop.mp4",
-  "poster": "assets/posters/sauna-build.jpg",
+  "loop": "assets/video/westernsol-hero-loop.mp4",
+  "poster": "assets/posters/westernsol-hero.jpg",
   "price": {
    "text": "Projects from $5K · Hero film + social cuts",
    "fallback": "Scoped per project · Hero film + social cuts",
@@ -148,9 +147,14 @@ const OFFERS = [
   },
   "ctas": [
    {
-    "label": "Work with me",
+    "label": "I run a property",
     "offer": "destination",
     "who": "resort"
+   },
+   {
+    "label": "I'm a brand",
+    "offer": "destination",
+    "who": "brand"
    }
   ]
  }
@@ -268,19 +272,70 @@ const CASES = [
   "result": null
  },
  {
-  "slug": "sauna-build",
-  "page": false,
-  "client": null,
-  "title": "The sauna build",
-  "tag": "Hospitality · Build film",
+  "slug": "western-sol",
+  "page": true,
+  "client": "Western Sol",
+  "title": "The sauna films",
+  "tag": "Hospitality · Sauna",
   "color": "ice",
   "offer": "destination",
-  "line": "A floating sauna, start to finish.",
-  "file": "assets/video/sauna-build.mp4",
-  "loop": "assets/video/sauna-build-loop.mp4",
-  "poster": "assets/posters/sauna-build.jpg",
+  "line": "Films, social cuts and stills for Western Sol's cedar saunas, from the floating deck to the cube.",
+  "file": "assets/video/westernsol-hero.mp4",
+  "loop": "assets/video/westernsol-hero-loop.mp4",
+  "poster": "assets/posters/westernsol-hero.jpg",
   "shape": "tall",
-  "confirmed": true
+  "confirmed": true,
+  "glance": {
+   "Client": "Western Sol",
+   "Work": "Brand film, build film, social cuts, stills"
+  },
+  "relatedLabel": "More for Western Sol",
+  "related": [
+   {
+    "title": "The floating sauna, start to finish",
+    "file": "assets/video/sauna-build.mp4",
+    "poster": "assets/posters/sauna-build.jpg"
+   },
+   {
+    "title": "Inside the dream sauna",
+    "file": "assets/video/westernsol-dream-sauna.mp4",
+    "poster": "assets/posters/westernsol-dream-sauna.jpg"
+   },
+   {
+    "title": "Grounded",
+    "file": "assets/video/westernsol-grounded.mp4",
+    "poster": "assets/posters/westernsol-grounded.jpg"
+   }
+  ],
+  "photos": [
+   {
+    "src": "assets/img/westernsol-cube.jpg",
+    "alt": "Western Sol cube sauna with a black frame and glass front, set in pines"
+   },
+   {
+    "src": "assets/img/westernsol-floating.jpg",
+    "alt": "Western Sol floating sauna on its deck with lounge chairs"
+   },
+   {
+    "src": "assets/img/westernsol-salt-bench.jpg",
+    "alt": "Cedar sauna benches lit by Himalayan salt panels"
+   },
+   {
+    "src": "assets/img/westernsol-interior.jpg",
+    "alt": "Cedar sauna interior with a window bench and stacked wood"
+   },
+   {
+    "src": "assets/img/westernsol-heater.jpg",
+    "alt": "Sauna heater with stones beside cedar benches"
+   },
+   {
+    "src": "assets/img/westernsol-bench.jpg",
+    "alt": "Cedar sauna bench next to the heater stones"
+   }
+  ],
+  "brief": null,
+  "approach": null,
+  "result": null
  }
 ];
 const ACCESS_LINE = "Getting the right rider to the right place on the right day is most of the job.";
@@ -454,18 +509,25 @@ const BEIJING = {
   "assets/img/olympics-04.jpg",
   "assets/img/olympics-05.jpg",
   "assets/img/olympics-06.jpg",
-  "assets/img/olympics-07.jpg"
+  "assets/img/olympics-07.jpg",
+  "assets/img/beijing-xc-celebrate.jpg",
+  "assets/img/beijing-xc-podium.jpg",
+  "assets/img/beijing-xc-bib5.jpg",
+  "assets/img/beijing-xc-crowd.jpg",
+  "assets/img/beijing-xc-race.jpg"
  ]
 };
 const COLLAGE = [
  {
-  "still": "assets/img/xgames-03-1400.webp",
-  "ar": 1.826,
-  "w": 34,
+  "still": "assets/img/olympics-02-1400.webp",
+  "full": "assets/img/olympics-02.jpg",
+  "alt": "US snowboarder with the flag, Beijing 2022 Winter Olympics",
+  "ar": 1.38,
+  "w": 30,
   "x": -30,
   "y": -22,
   "r": -7,
-  "wm": 62,
+  "wm": 56,
   "xm": -14,
   "ym": -30
  },
@@ -484,13 +546,15 @@ const COLLAGE = [
   "ym": -24
  },
  {
-  "still": "assets/img/xgames-02-1400.webp",
-  "ar": 0.786,
-  "w": 18,
+  "still": "assets/img/olympics-01-1400.webp",
+  "full": "assets/img/olympics-01.jpg",
+  "alt": "Halfpipe, Beijing 2022 Winter Olympics",
+  "ar": 0.667,
+  "w": 17,
   "x": 32,
   "y": -26,
   "r": -3,
-  "wm": 36,
+  "wm": 34,
   "xm": -28,
   "ym": 26
  },
@@ -537,7 +601,9 @@ const COLLAGE = [
   "ym": 6
  },
  {
-  "still": "assets/img/xgames-09-1400.webp",
+  "still": "assets/img/beijing-xc-celebrate-1400.webp",
+  "full": "assets/img/beijing-xc-celebrate.jpg",
+  "alt": "Cross-country finish, Beijing 2022 Winter Olympics",
   "ar": 1.5,
   "w": 24,
   "x": 14,
@@ -558,7 +624,9 @@ const COLLAGE = [
   "m": false
  },
  {
-  "still": "assets/img/xgames-08-1400.webp",
+  "still": "assets/img/beijing-xc-bib5-1400.webp",
+  "full": "assets/img/beijing-xc-bib5.jpg",
+  "alt": "US cross-country skier after her race, Beijing 2022 Winter Olympics",
   "ar": 0.667,
   "w": 16,
   "x": -46,

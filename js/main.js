@@ -103,7 +103,7 @@
       <figure class="ctile${c.clip ? " ctile--clip" : ""}"${c.m === false ? ' data-m="none"' : ""} style="--w:${c.w};--x:${c.x};--y:${c.y};--r:${c.r};--ar:${c.ar};--wm:${c.wm ?? c.w};--xm:${c.xm ?? c.x};--ym:${c.ym ?? c.y}">
         <div class="ctile__card" data-host role="button" tabindex="0" ${c.clip
           ? `data-play data-film="${esc(P(c.film))}" data-title="${esc(c.title)}" aria-label="Play ${esc(c.title)}"`
-          : `data-cursor="View" data-photo="${esc(P(c.still))}" aria-label="View photo, X Games Aspen 2025"`}>
+          : `data-cursor="View" data-photo="${esc(P(c.full || c.still))}" data-cap="${esc(c.alt || "X Games Aspen 2025")}" aria-label="View photo, ${esc(c.alt || "X Games Aspen 2025")}"`}>
           ${c.clip ? `<video muted loop playsinline preload="none" data-src="${esc(P(c.clip))}"></video>` : ""}
           <img class="ctile__front" src="${esc(P(c.still))}" alt="" loading="lazy" decoding="async">
         </div>
@@ -255,7 +255,8 @@
             ${sec("The brief", c.brief, "One sentence: what did the client need?")}
             ${sec("The approach", c.approach, "Athlete, place, conditions: how did you shoot it?")}
             ${sec("Where it ran", c.result, "Where did it run? Any real numbers?")}
-            ${c.related ? `<section class="cs__sec"><h2 class="eyebrow">More with ${esc((c.glance && c.glance.Athlete) || "this athlete").split(" ").pop()}</h2><div class="cs__related">${c.related.map((r) => card({ ...r, tag: "" })).join("")}</div></section>` : ""}
+            ${c.related ? `<section class="cs__sec"><h2 class="eyebrow">${esc(c.relatedLabel || "More with " + ((c.glance && c.glance.Athlete) || "this athlete").split(" ").pop())}</h2><div class="cs__related">${c.related.map((r) => card({ ...r, tag: "" })).join("")}</div></section>` : ""}
+            ${c.photos ? `<section class="cs__sec"><h2 class="eyebrow">Stills</h2><div class="cs__photos">${c.photos.map((ph) => `<figure class="photo" data-photo="${esc(P(ph.src))}" data-cursor="View" role="button" tabindex="0" aria-label="View photo: ${esc(ph.alt)}"><img src="${esc(P(ph.src))}" alt="${esc(ph.alt)}" loading="lazy" decoding="async"></figure>`).join("")}</div></section>` : ""}
           </div>
         </div>
         <section class="cs__cta section section--bone">
@@ -283,13 +284,13 @@
     const f = $("#startForm");
     const WHAT = {
       brand: ["Brand film", "Athlete partnership", "Not sure yet"],
-      resort: ["Destination film", "Drone / flyover", ...(ok(FORM_3D_TOUR) ? ["3D tour"] : []), "Not sure yet"],
+      resort: ["Hospitality film", "Athletes at my property", "Drone / flyover", "Not sure yet"],
       athlete: ["Content for my sponsors", "Help me land a partner", "Follow cam / edit"],
-      agency: ["Brand film", "Destination film", "Athlete partnership", "Not sure yet"],
+      agency: ["Brand film", "Hospitality film", "Athlete partnership", "Not sure yet"],
       other: [],
     };
-    const COMPANY = { brand: "Company", resort: "Resort / company", athlete: "Your name as an athlete", agency: "Agency", other: "Company (optional)" };
-    const OFFER_TO_WHAT = { "brand-film": "Brand film", destination: "Destination film", partnership: { brand: "Athlete partnership", athlete: "Help me land a partner", agency: "Athlete partnership" } };
+    const COMPANY = { brand: "Company", resort: "Property / company", athlete: "Your name as an athlete", agency: "Agency", other: "Company (optional)" };
+    const OFFER_TO_WHAT = { "brand-film": "Brand film", destination: { resort: "Hospitality film", brand: "Hospitality film", agency: "Hospitality film" }, partnership: { brand: "Athlete partnership", athlete: "Help me land a partner", agency: "Athlete partnership" } };
 
     /* controls inside anything hidden are disabled, so FormData skips them */
     const syncDisabled = () => $$("input, textarea", f).forEach((el) => {
@@ -516,9 +517,10 @@
 
   /* burst tiles: a clip tile reveals its clip then opens the film; a still opens big */
   const photoBox = $("#photoBox");
-  const openPhoto = (src) => {
+  const openPhoto = (src, cap = "X Games Aspen 2025") => {
+    if (!photoBox) return;
     lastFocus = document.activeElement;
-    $("#photoImg").src = src; $("#photoImg").alt = "X Games Aspen 2025, photo"; $("#photoCap").textContent = "X Games Aspen 2025";
+    $("#photoImg").src = src; $("#photoImg").alt = cap; $("#photoCap").textContent = cap;
     photoBox.classList.add("player--open"); photoBox.setAttribute("aria-hidden", "false");
     body.style.overflow = "hidden"; $("#photoClose").focus();
   };
@@ -546,7 +548,7 @@
 
   $$(".ctile__card").forEach((card) => {
     const go = () => {
-      if (card.dataset.photo) return openPhoto(card.dataset.photo);
+      if (card.dataset.photo) return openPhoto(card.dataset.photo, card.dataset.cap);
       const t = card.closest(".ctile");
       if (t.classList.contains("is-live")) return openPlayer(card.dataset.film, card.dataset.title);
       t._forced = true; t._on = true; t.classList.add("is-live"); Plays.want(card.querySelector("video"));
@@ -554,6 +556,12 @@
     };
     card.addEventListener("click", go);
     card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  });
+
+  $$(".cs__photos .photo").forEach((ph) => {
+    const go = () => openPhoto(ph.dataset.photo, ph.querySelector("img").alt);
+    ph.addEventListener("click", go);
+    ph.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
   });
 
   /* mobile menu */
