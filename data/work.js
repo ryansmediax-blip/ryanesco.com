@@ -254,7 +254,7 @@ const CASES = [
    "Athlete": "Mikaela Shiffrin",
    "Location": "Killington, Vermont",
    "Deliverables": "51 s social film, 4:5",
-   "Also": "12 s spec ad, adidas Terrex"
+   "Also": "Spec training shoot, stills"
   },
   "related": [
    {
@@ -268,11 +268,41 @@ const CASES = [
     "poster": "assets/posters/shiffrin-02.jpg"
    }
   ],
-  "spec": {
-   "label": "The other side: a brand spot",
-   "line": "A 12-second spec ad for adidas Terrex. Mikaela in training, lit and cut like a brand spot. A spec piece, not an adidas commission.",
-   "file": "assets/video/shiffrin-terrex-spec.mp4",
-   "poster": "assets/posters/shiffrin-terrex-spec.jpg"
+  "frames": {
+   "label": "Frames from the training shoot",
+   "line": "Stills pulled from a spec shoot with Mikaela in training. Lit, framed and graded like a campaign. Not an adidas commission.",
+   "items": [
+    {
+     "src": "assets/img/shiffrin-frame-bike.jpg",
+     "tc": "00:00:01:20",
+     "alt": "Mikaela Shiffrin on a bike in training, side light on a yellow wall"
+    },
+    {
+     "src": "assets/img/shiffrin-frame-run.jpg",
+     "tc": "00:00:03:12",
+     "alt": "Mikaela Shiffrin running in profile, ponytail mid-swing, dark gym"
+    },
+    {
+     "src": "assets/img/shiffrin-frame-treadmill.jpg",
+     "tc": "00:00:04:17",
+     "alt": "Low angle of Mikaela Shiffrin sprinting on a curved treadmill under a single light"
+    },
+    {
+     "src": "assets/img/shiffrin-frame-rest.jpg",
+     "tc": "00:00:07:00",
+     "alt": "Mikaela Shiffrin resting on a treadmill between intervals"
+    },
+    {
+     "src": "assets/img/shiffrin-frame-smile.jpg",
+     "tc": "00:00:09:08",
+     "alt": "Backlit close-up of Mikaela Shiffrin smiling in the dark"
+    },
+    {
+     "src": "assets/img/shiffrin-frame-sky.jpg",
+     "tc": "00:00:09:15",
+     "alt": "Mikaela Shiffrin against a blue sky, shot from below"
+    }
+   ]
   },
   "brief": null,
   "approach": null,

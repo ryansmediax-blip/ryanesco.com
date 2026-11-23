@@ -255,8 +255,8 @@
             ${sec("The brief", c.brief, "One sentence: what did the client need?")}
             ${sec("The approach", c.approach, "Athlete, place, conditions: how did you shoot it?")}
             ${sec("Where it ran", c.result, "Where did it run? Any real numbers?")}
-            ${c.spec ? `<section class="cs__sec rv"><h2 class="eyebrow">${esc(c.spec.label)}</h2><p>${esc(c.spec.line)}</p><div class="cs__spec"><video controls playsinline preload="none" poster="${esc(P(c.spec.poster))}" src="${esc(P(c.spec.file))}"></video></div></section>` : ""}
             ${c.related ? `<section class="cs__sec"><h2 class="eyebrow">${esc(c.relatedLabel || "More with " + ((c.glance && c.glance.Athlete) || "this athlete").split(" ").pop())}</h2><div class="cs__related">${c.related.map((r) => card({ ...r, tag: "" })).join("")}</div></section>` : ""}
+            ${c.frames ? `<section class="cs__sec"><h2 class="eyebrow">${esc(c.frames.label)}</h2><p>${esc(c.frames.line)}</p><div class="cs__frames">${c.frames.items.map((ph) => `<figure class="frame"><div class="photo" data-photo="${esc(P(ph.src))}" data-cursor="View" role="button" tabindex="0" aria-label="View frame: ${esc(ph.alt)}"><img src="${esc(P(ph.src))}" alt="${esc(ph.alt)}" loading="lazy" decoding="async"></div><figcaption class="mono">TC ${esc(ph.tc)}</figcaption></figure>`).join("")}</div></section>` : ""}
             ${c.photos ? `<section class="cs__sec"><h2 class="eyebrow">Stills</h2><div class="cs__photos">${c.photos.map((ph) => `<figure class="photo${ph.span ? " photo--" + ph.span : ""}" data-photo="${esc(P(ph.src))}" data-cursor="View" role="button" tabindex="0" aria-label="View photo: ${esc(ph.alt)}"><img src="${esc(P(ph.src))}" alt="${esc(ph.alt)}" loading="lazy" decoding="async"></figure>`).join("")}</div></section>` : ""}
           </div>
         </div>
@@ -559,7 +559,7 @@
     card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
   });
 
-  $$(".cs__photos .photo").forEach((ph) => {
+  $$(".cs__photos .photo, .cs__frames .photo").forEach((ph) => {
     const go = () => openPhoto(ph.dataset.photo, ph.querySelector("img").alt);
     ph.addEventListener("click", go);
     ph.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
